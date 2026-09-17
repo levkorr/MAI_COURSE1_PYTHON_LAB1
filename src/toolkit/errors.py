@@ -9,3 +9,13 @@ def float_mistake(tokens):
         if token.count(".")>1:
             return [True, token]
     return [False, 0]
+
+def no_operand_after_operation(tokens):
+    if tokens[-1] in ["+","-","*","/",""]:
+        return [True, tokens[-1]]
+    return [False, 0]
+
+def operation_before_first_operand(tokens):
+    if tokens[0] in ["*","/","-","+"]:
+        return [True, tokens[0]]
+    return [False, 0]

@@ -1,8 +1,3 @@
-
-
-from errors import *
-from validator import *
-
 def tokenize(expr):
     tokens = []
     state = "START"
@@ -16,6 +11,8 @@ def tokenize(expr):
             elif char in ["-","+"]:
                 current_token=char
                 state="NUMBER"
+            elif char in ["*","/"]:
+                tokens.append(char)
         elif state=="NUMBER":
             if char.isdigit() or char==".":
                 current_token+=char
@@ -43,13 +40,6 @@ def shunting_yard(tokens):
             operators.append(token)
     while len(operators)!=0:
         output.append(operators.pop())
+    if output[-1]=="":
+        output.pop()
     return output
-
-if __name__ == "__main__":
-    s = "136+25266+24..3/-4*+4-+5/-6"
-    tokenized_s = tokenize(s)
-    print(tokenized_s)
-    validation(tokenized_s)
-
-#rpn_s = shunting_yard(tokenized_s)
-#print(rpn_s)
