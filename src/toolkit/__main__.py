@@ -18,7 +18,6 @@ if __name__ == "__main__":
         print(calculated_expression)
 
     elif argv[1]=="convert":
-        print(argv)
         Value = int(argv[2])
         From = argv[4]
         To = argv[6]
