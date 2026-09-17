@@ -34,3 +34,4 @@ def division_by_zero(tokens):
     for i in range(len(tokens)-1):
             if tokens[i] == "/" and tokens[i+1] == "0":
                 return [True, [tokens[i],tokens[i+1]]]
+    return [False, 0]

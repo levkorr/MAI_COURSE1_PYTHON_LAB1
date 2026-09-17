@@ -6,7 +6,7 @@ from validator import validation
 from converter import convert
 
 if __name__ == "__main__":
-    s = "-136++25266++24.3-4*+4-+5/0-.6"
+    s = "-136++25266++24.3-4*+4-+5-.6"
     tokenized_s = tokenize(s)
     print(tokenized_s)
     validation(tokenized_s)
