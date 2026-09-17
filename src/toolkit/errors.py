@@ -3,7 +3,7 @@
 def sequential_operations(tokens):
     for i in range(len(tokens)-1):
         if tokens[i] in ["+","-","*","/"] and tokens[i+1] in ["+","-","*","/"]:
-            return [True, "".join(tokens[i],tokens[i+1])]
+            return [True, tokens[i]+tokens[i+1]]
     return [False,0]
 
 # Проверяет что нет неправильно написанных нецелых чисел

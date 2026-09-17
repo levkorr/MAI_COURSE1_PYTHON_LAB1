@@ -10,7 +10,7 @@ def tokenize(expr):
             if char.isdigit(): # Если это число
                 state="NUMBER"
                 current_token+=char
-            elif char in ["-","+"]: # Если это ведущий + или -
+            elif char in ["-","+","."]: # Если это ведущий +- или опустили целую нулевую часть числа
                 current_token=char
                 state="NUMBER"
             elif char in ["*","/"]: # Если это лишняя операция, присекается при валидации
