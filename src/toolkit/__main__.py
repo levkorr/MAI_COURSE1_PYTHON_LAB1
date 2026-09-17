@@ -3,6 +3,7 @@ from tokenizer import tokenize
 from tokenizer import shunting_yard
 from calculator import calculate
 from validator import validation
+from converter import convert
 
 if __name__ == "__main__":
     s = "-136++25266++24.3-4*+4-+5/-.6"
@@ -13,3 +14,5 @@ if __name__ == "__main__":
     print(rpn_s)
     calculated_s = calculate(rpn_s)
     print(calculated_s)
+
+    print(convert(100, "km", "m"))

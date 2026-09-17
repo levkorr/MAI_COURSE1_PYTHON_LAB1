@@ -10,9 +10,12 @@ def convert(Value, From, To):
                   "m_to_cm": "+100",
                   "cm_to_km": "-100000",
                   "km_to_cm": "+100000",
+                  "m_to_km": "-1000",
+                  "km_to_m": "+1000",
 
                   "g_to_kg": "-1000",
                   "kg_to_g": "+1000"}
+    
     if metrics == "c_to_f":
         return (Value*9/5)+32
     elif metrics == "f_to_c":
