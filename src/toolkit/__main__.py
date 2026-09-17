@@ -7,6 +7,7 @@ from converter import convert
 
 if __name__ == "__main__":
     s = "-136++25266++24.3-4*+4-+5--.6"
+    print(s)
     tokenized_s = tokenize(s)
     print(tokenized_s)
     validation(tokenized_s)
@@ -14,5 +15,4 @@ if __name__ == "__main__":
     print(rpn_s)
     calculated_s = calculate(rpn_s)
     print(calculated_s)
-
     print(convert(100, "km", "m"))
