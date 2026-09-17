@@ -1,4 +1,4 @@
-from errors import *
+from .errors import *
 
 # Если ошибка есть, пишет сообщение с указателем на ошибку
 def validation(tokens):

@@ -1,7 +1,3 @@
-from errors import *
-from tokenizer import *
-from validator import *
-
 def calculate(rpn_tokens):
     stack = []
 
