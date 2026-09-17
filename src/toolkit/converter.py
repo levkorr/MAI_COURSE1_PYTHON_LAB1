@@ -1,4 +1,5 @@
 def convert(Value, From, To):
+    Value = int(Value)
     metrics=From+"_to_"+To # Создаем вид для словаря
     metrics_dict={"mm_to_cm": "-10", #- Означает, что нужно делить
                   "cm_to_mm": "+10", #+ Означает, что нужно умножить

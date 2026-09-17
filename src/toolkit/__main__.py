@@ -5,15 +5,21 @@ from .calculator import calculate
 from .validator import validation
 from .converter import convert
 
+# python -m toolkit calc "-136++25266++24.3-4*+4-+5--.6"
+# python -m toolkit convert 129 --from kg --to g
+# "-136++25266++24.3-4*+4-+5--.6"
+
 if __name__ == "__main__":
-    print("Hello,world")
-    s = "-136++25266++24.3-4*+4-+5--.6"
-    print(s)
-    tokenized_s = tokenize(s)
-    print(tokenized_s)
-    validation(tokenized_s)
-    rpn_s = shunting_yard(tokenized_s)
-    print(rpn_s)
-    calculated_s = calculate(rpn_s)
-    print(calculated_s)
-    print(convert(100, "km", "m"))
+    if argv[1]=="calc":
+        tokenized_expression = tokenize(argv[2])
+        validation(tokenized_expression)
+        rpn_expression = shunting_yard(tokenized_expression)
+        calculated_expression = calculate(rpn_expression)
+        print(calculated_expression)
+
+    elif argv[1]=="convert":
+        print(argv)
+        Value = int(argv[2])
+        From = argv[4]
+        To = argv[6]
+        print(convert(Value, From, To))
