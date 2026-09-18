@@ -24,3 +24,9 @@ def validation_calc(tokens):
          sys.exit(2)
          #raise ZeroDivisionError(f"Division by zero occurred: {"".join(division_by_zero(tokens)[1])}")
     return True
+
+def validation_convert(Value, From, To):
+    if unknown_metrics(Value, From, To)[0]:
+        print(f"Unknown metrics: {unknown_metrics(Value, From, To)[1]}", file = sys.stderr)
+        sys.exit(2)
+    return True
