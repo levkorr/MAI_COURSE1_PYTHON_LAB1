@@ -55,3 +55,15 @@ def wrong_metrics_type(Value, From, To):
     elif From in ["c","f","k"] and To not in ["c","f","k"]:
         return [True, To]
     return [False, 0]
+
+def below_absolute_zero(Value, From, To):
+    if From == "c":
+        if Value< -273.15:
+            return [True, Value]
+    if From == "f":
+        if Value < -459.67:
+            return [True, Value]
+    if From == "k":
+        if Value < 0:
+            return [True, Value]
+    return [False, 0]
