@@ -16,15 +16,26 @@ def convert(Value, From, To):
 
                   "g_to_kg": "-1000",
                   "kg_to_g": "+1000"}
-    # Если это температура (нелинейный перевод)
-    if metrics == "c_to_f": 
-        return (Value*9/5)+32
-    elif metrics == "f_to_c":
-        return (Value-32)*5/9
 
     # Если линейный перевод величин возможен:
-    elif metrics in metrics_dict:
+    if metrics in metrics_dict:
         if metrics_dict[metrics][0]=="-": # Если надо делить
             return (Value/int(metrics_dict[metrics][1:]))
         else: # Если надо умножать
             return (Value*int(metrics_dict[metrics][1:])) 
+
+    # Если это температура (нелинейный перевод)
+    elif metrics == "c_to_f": 
+        return (Value*9/5)+32
+    elif metrics == "f_to_c":
+        return (Value-32)*5/9
+    elif metrics == "c_to_k":
+        return (Value+273.15)
+    elif metrics == "k_to_c":
+        return (Value-273.15)
+    elif metrics == "f_to_k":
+        return (Value - 32)* 5/9 + 273.15
+    elif metrics == "k_to_f":
+        return (Value - 273.15) * 9/5 + 32
+    else:
+        raise ValueError(f"Can't convert these metrics: from {From} to {To}")
