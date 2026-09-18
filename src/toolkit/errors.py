@@ -46,3 +46,12 @@ def unknown_metrics(Value, From, To):
     if len(unknown)!=0:
         return [True, unknown]
     return [False, 0]
+
+def wrong_metrics_type(Value, From, To):
+    if From in ["cm","mm","m","km"] and To not in ["cm","mm","m","km"]:
+        return [True, To]
+    elif From in ["g","kg"] and To not in ["g","kg"]:
+        return [True, To]
+    elif From in ["c","f","k"] and To not in ["c","f","k"]:
+        return [True, To]
+    return [False, 0]

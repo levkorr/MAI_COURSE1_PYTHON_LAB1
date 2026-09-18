@@ -27,6 +27,9 @@ def validation_calc(tokens):
 
 def validation_convert(Value, From, To):
     if unknown_metrics(Value, From, To)[0]:
-        print(f"Unknown metrics: {unknown_metrics(Value, From, To)[1]}", file = sys.stderr)
+        print(f"Unknown metrics: {unknown_metrics(Value, From, To)[1]}", file=sys.stderr)
         sys.exit(2)
+    elif wrong_metrics_type(Value, From, To)[0]:
+         print(f"Cant convert between different Types: from {From} to {To}", file=sys.stderr)
+         sys.exit(2)
     return True
