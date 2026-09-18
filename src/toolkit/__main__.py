@@ -2,7 +2,7 @@ from sys import argv
 from .tokenizer import tokenize
 from .tokenizer import shunting_yard
 from .calculator import calculate
-from .validator import validation
+from .validator import validation_calc
 from .converter import convert
 
 # python -m toolkit calc "-136++25266++24.3-4*+4-+5--.6"
@@ -12,7 +12,7 @@ from .converter import convert
 if __name__ == "__main__":
     if argv[1]=="calc":
         tokenized_expression = tokenize(argv[2])
-        validation(tokenized_expression)
+        validation_calc(tokenized_expression)
         rpn_expression = shunting_yard(tokenized_expression)
         calculated_expression = calculate(rpn_expression)
         print(calculated_expression)

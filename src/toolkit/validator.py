@@ -1,7 +1,7 @@
 from .errors import *
 
 # Если ошибка есть, пишет сообщение с указателем на ошибку
-def validation(tokens):
+def validation_calc(tokens):
     if operation_before_first_operand(tokens)[0]:
             raise ValueError(f"Operation before the first operand: {operation_before_first_operand(tokens)[1]}")
     if sequential_operations(tokens)[0]:
