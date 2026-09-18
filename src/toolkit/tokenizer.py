@@ -1,6 +1,7 @@
 #Функция возвращает токенизированное выражение
 
 def tokenize(expr):
+    expr = expr.replace(" ","")
     tokens = []
     state = "START"
     current_token = ""

@@ -36,3 +36,9 @@ def validation_convert(Value, From, To):
         print(f"Temperature below absolute zero: {Value}{From}", file=sys.stderr)
         sys.exit(2)
     return True
+
+def initial_validation_calc(str):
+    if split_number(str)[0]:
+        print(f"Number is split: {split_number(str)[1]}", file=sys.stderr)
+        sys.exit(2)
+    return True

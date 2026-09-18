@@ -37,6 +37,14 @@ def division_by_zero(tokens):
     return [False, 0]
 
 
+def split_number(str):
+    str = str.split()
+    for i in range(len(str)-1):
+        if str[i][-1].isdigit() and str[i+1][0].isdigit():
+            return [True, f"...{str[i][-1]} {str[i+1][0]}..."]
+    return [False, 0]
+
+
 def unknown_metrics(Value, From, To):
     unknown = ""
     if From not in ["cm","mm","m","km","kg","g","c","f","k"]:
