@@ -37,5 +37,3 @@ def convert(Value, From, To):
         return (Value - 32)* 5/9 + 273.15
     elif metrics == "k_to_f":
         return (Value - 273.15) * 9/5 + 32
-#    else:
-#        raise ValueError(f"Can't convert these metrics: from {From} to {To}")

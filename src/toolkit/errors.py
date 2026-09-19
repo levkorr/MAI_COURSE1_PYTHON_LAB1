@@ -1,3 +1,5 @@
+# Ошибки для валидации токенизированного выражения калькуляции
+
 # Проверяет что нет двух операций подряд
 # В случае двух операций подряд, возвращает True и сами операции
 def sequential_operations(tokens):
@@ -37,6 +39,8 @@ def division_by_zero(tokens):
     return [False, 0]
 
 
+# Ошибки для валидации иначального выражения калькуляции
+
 def split_number(str):
     str = str.split()
     for i in range(len(str)-1):
@@ -45,6 +49,10 @@ def split_number(str):
     return [False, 0]
 
 
+# Ошибки для валидации конвертации
+
+# Проверяет что нет есть неизвестные выличины
+# В случае когда есть, возвращает True и неизвестную величину (может несколько)
 def unknown_metrics(Value, From, To):
     unknown = ""
     if From not in ["cm","mm","m","km","kg","g","c","f","k"]:
@@ -55,6 +63,8 @@ def unknown_metrics(Value, From, To):
         return [True, unknown]
     return [False, 0]
 
+# Проверят что все величины относятся к одной группе (длина, масса, температура)
+# В случае если величины из разных групп, возвращает True
 def wrong_metrics_type(Value, From, To):
     if From in ["cm","mm","m","km"] and To not in ["cm","mm","m","km"]:
         return [True, To]
@@ -64,6 +74,8 @@ def wrong_metrics_type(Value, From, To):
         return [True, To]
     return [False, 0]
 
+# Проверяет что у температуры значение не ниже абсолютного нуля
+# В случае когда температура ниже абсолютного нуля, возвращает True
 def below_absolute_zero(Value, From, To):
     if From == "c":
         if Value< -273.15:
