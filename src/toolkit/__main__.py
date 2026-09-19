@@ -22,7 +22,7 @@ if __name__ == "__main__":
         exit(0) # Успешное завершение программы
 
     elif argv[1]=="convert": # Если конвертация
-        Value = int(argv[2]) # Значение
+        Value = float(argv[2]) # Значение
         From = argv[4].lower() # Из какой величины
         To = argv[6].lower() # В какую величину
 
