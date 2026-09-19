@@ -21,6 +21,17 @@ def validation_calc(tokens):
          sys.exit(2)
     return True
 
+# Изначальная валидация выражения для калькуляции
+# В случае ошибки выводит ошибку в stderr и программа завершается с кодом 2
+def initial_validation_calc(str):
+    if split_number(str)[0]:
+        print(f"Number is split: {split_number(str)[1]}", file=sys.stderr)
+        sys.exit(2)
+    if unknown_symbols(str)[0]:
+        print(f"Unknown symbols: {unknown_symbols(str)[1]}", file = sys.stderr)
+        sys.exit(2)
+    return True
+
 # Валидация конвертации
 # В случае ошибки выводит ошибку в stderr и программа завершается с кодом 2
 def validation_convert(Value, From, To):
@@ -32,13 +43,5 @@ def validation_convert(Value, From, To):
         sys.exit(2)
     elif below_absolute_zero(Value, From, To)[0]:
         print(f"Temperature below absolute zero: {Value}{From}", file=sys.stderr)
-        sys.exit(2)
-    return True
-
-# Изначальная валидация выражения для калькуляции
-# В случае ошибки выводит ошибку в stderr и программа завершается с кодом 2
-def initial_validation_calc(str):
-    if split_number(str)[0]:
-        print(f"Number is split: {split_number(str)[1]}", file=sys.stderr)
         sys.exit(2)
     return True

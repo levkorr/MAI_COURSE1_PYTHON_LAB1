@@ -41,6 +41,19 @@ def division_by_zero(tokens):
 
 # Ошибки для валидации иначального выражения калькуляции
 
+# Проверяет нет ли неизвестных символов
+# В случае неизвестных символов, возвращает True и все неизвестные символы
+def unknown_symbols(str):
+    unknown = ""
+    for char in str:
+        if char not in "0123456789/*+-.":
+            unknown+=f"{char} "
+    if len(unknown)!=0:
+        return [True, unknown]
+    return [False, 0]
+
+# Проверяем что нет чисел с пробелом внутри
+# В случае если такое число есть, возвращаем True и цифры, находящиеся вокруг пробела
 def split_number(str):
     str = str.split()
     for i in range(len(str)-1):
