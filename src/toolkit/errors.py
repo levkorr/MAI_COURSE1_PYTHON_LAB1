@@ -46,7 +46,7 @@ def division_by_zero(tokens):
 def unknown_symbols(str):
     unknown = ""
     for char in str:
-        if char not in "0123456789/*+-.":
+        if char not in "0123456789/*+-. ":
             unknown += f"{char} "
     if len(unknown) != 0:
         return [True, unknown]
