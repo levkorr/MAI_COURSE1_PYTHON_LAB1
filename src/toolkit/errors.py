@@ -57,7 +57,7 @@ def unknown_symbols(str):
 def split_number(str):
     str = str.split()
     for i in range(len(str)-1):
-        if str[i][-1].isdigit() and str[i+1][0].isdigit():
+        if (str[i][-1].isdigit() or str[i][-1]==".") and (str[i+1][0].isdigit() or str[i+1][0]=="."):
             return [True, f"...{str[i][-1]} {str[i+1][0]}..."]
     return [False, 0]
 
