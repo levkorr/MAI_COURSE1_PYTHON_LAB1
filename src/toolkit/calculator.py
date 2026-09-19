@@ -2,12 +2,12 @@ def calculate(rpn_tokens):
     stack = []
 
     for token in rpn_tokens:
-        if token.lstrip("+-").isdigit() or "." in token: # Если число
+        if token.lstrip("+-").isdigit() or "." in token:  # Если число
             stack.append(float(token))
-        else: # Если операция
+        else:  # Если операция
             # Порядок чисел важен для вычитания
-            b = stack.pop() # Последнее число в стэке
-            a = stack.pop() # Предпоследнее число в стэке
+            b = stack.pop()  # Последнее число в стэке
+            a = stack.pop()  # Предпоследнее число в стэке
 
             # Выполняем операцию, убираем итог обратно в стэк
             if token == "+":
