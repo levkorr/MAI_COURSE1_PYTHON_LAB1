@@ -23,7 +23,7 @@ def validation_calc(tokens):
         print(
             f"Division by zero occurred: {"".join(division_by_zero(tokens)[1])}", file=sys.stderr)
         sys.exit(2)
-    return True
+    return tokens
 
 # Изначальная валидация выражения для калькуляции
 # В случае ошибки выводит ошибку в stderr и программа завершается с кодом 2
@@ -34,7 +34,7 @@ def initial_validation_calc(str):
     if unknown_symbols(str)[0]:
         print(f"Unknown symbols: {unknown_symbols(str)[1]}", file=sys.stderr)
         sys.exit(2)
-    return True
+    return str
 
 # Валидация конвертации
 # В случае ошибки выводит ошибку в stderr и программа завершается с кодом 2
@@ -51,4 +51,4 @@ def validation_convert(Value, From, To):
         print(
             f"Temperature below absolute zero: {Value}{From}", file=sys.stderr)
         sys.exit(2)
-    return True
+    return (Value, From, To)
