@@ -10,15 +10,15 @@ def validation_calc(tokens):
         raise ValueError(f"Sequential Operations: {sequential_operations(tokens)[1]}")
     if float_mistake(tokens)[0]:
         raise ValueError(f"Float mistake: {float_mistake(tokens)[1]}")
-    if no_operand_after_operation(tokens)[0]:
-        raise ValueError(f"No operand after operation: {no_operand_after_operation(tokens)[1]}")
-    if division_by_zero(tokens)[0]:
-        raise ValueError(f"Division by zero occurred: {"".join(division_by_zero(tokens)[1])}")
     return tokens
 
 # Изначальная валидация выражения для калькуляции
 # В случае ошибки выводит ошибку в stderr и программа завершается с кодом 2
 def initial_validation_calc(expr):
+    if division_by_zero(expr)[0]:
+        raise ZeroDivisionError(f"Division by zero occurred: {division_by_zero(expr)[1]}")
+    if no_operand_after_operation(tokens)[0]:
+        raise ValueError(f"No operand after operation: {no_operand_after_operation(tokens)[1]}")
     if split_number(expr)[0]:
         raise ValueError(f"Number is split: {split_number(expr)[1]}")
     if unknown_symbols(expr)[0]:

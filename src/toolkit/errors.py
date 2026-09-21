@@ -16,13 +16,6 @@ def float_mistake(tokens):
             return [True, token]
     return [False, 0]
 
-# Проверяем что выражение не заканчивается на операцию
-# В случае когда выражение заканчивается на операцию, возвращает True и эту операцию
-def no_operand_after_operation(tokens):
-    if tokens[-1] in ["+", "-", "*", "/", ""]:
-        return [True, tokens[-1]]
-    return [False, 0]
-
 # Проверяем что выражение не начинается с операции
 # В случае когда выражение начинается с операции, возвращает True и эту операцию
 def operation_before_first_operand(tokens):
@@ -30,16 +23,23 @@ def operation_before_first_operand(tokens):
         return [True, tokens[0]]
     return [False, 0]
 
+# Ошибки для валидации иначального выражения калькуляции
+
 # Проверяет что нет ЯВНОГО деления на 0
 # В случае ЯВНОГО деления на 0, возвращает True и это деление на 0
-def division_by_zero(tokens):
-    for i in range(len(tokens)-1):
-        if tokens[i] == "/" and tokens[i+1] == "0":
-            return [True, [tokens[i], tokens[i+1]]]
+def division_by_zero(expr):
+    expr = expr.replace(" ","")
+    if "/0" in expr:
+        return [True, "/0"]
     return [False, 0]
 
-
-# Ошибки для валидации иначального выражения калькуляции
+# Проверяем что выражение не заканчивается на операцию
+# В случае когда выражение заканчивается на операцию, возвращает True и эту операцию
+def no_operand_after_operation(expr):
+    expr = expr.replace(" ","")
+    if expr[-1] in ["+", "-", "*", "/"]:
+        return [True, expr[-1]]
+    return [False, 0]
 
 # Проверяет нет ли неизвестных символов
 # В случае неизвестных символов, возвращает True и все неизвестные символы
