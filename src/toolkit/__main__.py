@@ -13,8 +13,8 @@ if __name__ == "__main__":
     try:
         #cli_validation(argv)
         if argv[1] == "calc":  # Если калькуляция
-            if argv>2:
-                expr = argv[2]  # Выражение
+            expr = argv[2] # Выражение
+            
             initial_validation_calc(expr)  # Предварительная валидация выражения
             tokenized_expression = tokenize(expr)  # Токенизация выражения
             # Валиадция токенизированного выражения
