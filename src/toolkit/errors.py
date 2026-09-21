@@ -12,7 +12,7 @@ def sequential_operations(tokens):
 # В случае неправильного нецелого числа, возвращает True и это неправильно написанное число
 def float_mistake(tokens):
     for token in tokens:
-        if token.count(".") > 1:
+        if token.count(".") > 1 or token[-1]==".":
             return [True, token]
     return [False, 0]
 

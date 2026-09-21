@@ -12,9 +12,22 @@ def full_cycle(expr):
 @pytest.mark.parametrize(
     "expression, expected",
     [
-        ("24.9/-43.8*-20", 11.36986301369863),
-        ("-3++4", 1.0),
+        # Порядок операций
+        ("2+2/2", 3.0),
         ("2+2*2", 6.0),
+        # Отрицательные числа
+        ("-5*-2", 10.0),
+        ("10/2.5", 4.0),
+        # Унарные плюсы и минусы
+        ("-1--2", 1.0),
+        ("+1/-2", -0.5),
+        # Вещественные числа
+        ("2.5*-10", -25.0),
+        ("10.56/+10", 1.056),
+        # Пробелы между токенами
+        ("56 * - 3 - 28", -196.0),
+        ("280 /- 3+ 27*-4", -201.33333333333331),
+        # Огромное выражение со всеми проверками
         ("-136 + 25266 / +24.3 - 4 * + 4 - + 5 / - .6", 896.0864197530865),
     ]
 )
@@ -27,15 +40,17 @@ def test_valid_expression(expression, expected):
     "expression, error",
     [
         ("24---3", "Sequential Operations: --"),
-        ("24++-3", "Sequential Operations: ++"),
         ("24**3", "Sequential Operations: **"),
-        ("24//3", "Sequential Operations: //"),
+        ("2 4+-3", "Number is split: ...2 4..."),
+        ("28 *25 66", "Number is split: ...5 6..."),
         ("24.5.6+3", "Float mistake: 24.5.6"),
+        ("5986/253.", "Float mistake: 253."),
         ("*24+3", "Operation before the first operand: *"),
         ("/24+3", "Operation before the first operand: /"),
         ("24+3/", "No operand after operation: /"),
         ("24+3+", "No operand after operation: +"),
         ("24+a", "Unknown symbols: a "),
+        ("26^a", "Unknown symbols: ^ a ")
     ]
 )
 def test_invalid_expression(expression, error):
