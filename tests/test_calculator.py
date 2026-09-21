@@ -35,16 +35,22 @@ def test_valid_expression(expression, expected):
 @pytest.mark.parametrize(
     "expression, error",
     [
+        # Две операции подряд
         ("24---3", "Sequential Operations: --"),
         ("24**3", "Sequential Operations: **"),
+        # Разделенное пробелом число
         ("2 4+-3", "Number is split: ...2 4..."),
         ("28 *25 66", "Number is split: ...5 6..."),
+        # Ошибочное написание вещественного числа
         ("24.5.6+3", "Float mistake: 24.5.6"),
         ("5986/253.", "Float mistake: 253."),
+        # Операция перед первым операндом
         ("*24+3", "Operation before the first operand: *"),
         ("/24+3", "Operation before the first operand: /"),
+        # Нет операнда после последней операции
         ("24+3/", "No operand after operation: /"),
         ("24+3+", "No operand after operation: +"),
+        # Неизвестные символы
         ("24+a", "Unknown symbols: a "),
         ("26^a", "Unknown symbols: ^ a ")
     ]

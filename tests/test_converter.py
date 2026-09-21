@@ -31,7 +31,6 @@ def test_valid_conversion(value, from_metric, to_metric, expected):
         (100, "abc", "m", "Unknown metrics: abc"),
         (100, "m", "abc", "Unknown metrics: abc"),
         (100, "abc", "xyz", "Unknown metrics: abc xyz"),
-
         # Несовместимые единицы
         (100, "m", "kg", "Cant convert between different Types: from m to kg"),
         (100, "c", "kg", "Cant convert between different Types: from c to kg"),
