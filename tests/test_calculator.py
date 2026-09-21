@@ -4,10 +4,6 @@ from toolkit.tokenizer import tokenize, shunting_yard
 from toolkit.calculator import calculate
 from toolkit.validator import initial_validation_calc, validation_calc
 
-
-def full_cycle(expr):
-    return calculate(shunting_yard(tokenize(expr)))
-
 # Успешные запуски
 @pytest.mark.parametrize(
     "expression, expected",
@@ -32,7 +28,7 @@ def full_cycle(expr):
     ]
 )
 def test_valid_expression(expression, expected):
-    assert full_cycle(expression) == pytest.approx(expected)
+    assert calculate(shunting_yard(tokenize(expression))) == pytest.approx(expected)
 
 
 # Неуспешные запуски
