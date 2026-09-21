@@ -27,12 +27,12 @@ if __name__ == "__main__":
             sys.exit(0)  # Успешное завершение программы
 
         elif argv[1] == "convert":  # Если конвертация
-            Value = float(argv[2])  # Значение
-            From = argv[4].lower()  # Из какой величины
-            To = argv[6].lower()  # В какую величину
+            value = float(argv[2])  # Значение
+            from_metric = argv[4].lower()  # Из какой величины
+            to_metric = argv[6].lower()  # В какую величину
 
-            validation_convert(Value, From, To)  # Валидация
-            converted_value = convert(Value, From, To)  # Перевод величин
+            validation_convert(value, from_metric, to_metric)  # Валидация
+            converted_value = convert(value, from_metric, to_metric)  # Перевод величин
 
             print(converted_value)  # Итоговый вывод
             sys.exit(0)  # Успешное завершение программы
