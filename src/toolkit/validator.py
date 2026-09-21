@@ -30,8 +30,25 @@ def initial_validation_calc(expr):
 def validation_convert(Value, From, To):
     if unknown_metrics(Value, From, To)[0]:
         raise ValueError(f"Unknown metrics: {unknown_metrics(Value, From, To)[1]}")
-    elif wrong_metrics_type(Value, From, To)[0]:
+    if wrong_metrics_type(Value, From, To)[0]:
         raise ValueError(f"Cant convert between different Types: from {From} to {To}")
-    elif below_absolute_zero(Value, From, To)[0]:
-        raise ValueError(f"Temperature below absolute zero: {Value}{From}", file=sys.stderr)
+    if below_absolute_zero(Value, From, To)[0]:
+        raise ValueError(f"Temperature below absolute zero: {Value}{From}")
     return (Value, From, To)
+
+def cli_validation(argv):
+    if len(argv)<2:
+        raise ValueError("Not enough arguments, try \"python -m toolkit --help\"")
+    else:
+        if argv[1]=="calc":
+            if len(argv)<3:
+                raise ValueError("Not enough arguments, try \"python -m toolkit --help\"")
+        elif argv[2]=="convert":
+            if len(argv)<6:
+                raise ValueError("Not enough arguments, try \"python -m toolkit --help\"")
+            if argv[3]!="--from":
+                raise ValueError(f"Unknown argument: {argv[3]}, try \"python -m toolkit --help\"")
+            if argv[5]!="--to":
+                raise ValueError(f"Unknown argument: {argv[5]}, try \"python -m toolkit --help\"")
+        else:
+            raise ValueError(f"Unknown argument: {argv[2]}, try \"python -m toolkit --help\"")

@@ -2,7 +2,7 @@ import sys
 from sys import argv
 from .tokenizer import tokenize, shunting_yard
 from .calculator import calculate
-from .validator import validation_calc, validation_convert, initial_validation_calc
+from .validator import validation_calc, validation_convert, initial_validation_calc, cli_validation
 from .converter import convert
 
 # python -m toolkit calc "-136++25266++24.3-4*+4-+5--.6"
@@ -11,9 +11,10 @@ from .converter import convert
 
 if __name__ == "__main__":
     try:
+        #cli_validation(argv)
         if argv[1] == "calc":  # Если калькуляция
-            expr = argv[2]  # Выражение
-
+            if argv>2:
+                expr = argv[2]  # Выражение
             initial_validation_calc(expr)  # Предварительная валидация выражения
             tokenized_expression = tokenize(expr)  # Токенизация выражения
             # Валиадция токенизированного выражения
