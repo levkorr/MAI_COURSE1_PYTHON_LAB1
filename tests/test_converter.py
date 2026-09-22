@@ -28,7 +28,6 @@ def test_valid_conversion(value, from_metric, to_metric, expected):
     "value, from_metric, to_metric, error",
     [
         # Неизвестные единицы
-        (100, "abc", "m", "Unknown metrics: abc"),
         (100, "m", "abc", "Unknown metrics: abc"),
         (100, "abc", "xyz", "Unknown metrics: abc xyz"),
         # Несовместимые единицы

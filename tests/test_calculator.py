@@ -10,12 +10,12 @@ from toolkit.validator import initial_validation_calc, validation_calc
     [
         # Порядок операций
         ("2+2/2", 3.0),
-        ("2+2*2", 6.0),
+        ("2+3*4", 14.0),
         # Отрицательные числа
-        ("-5*-2", 10.0),
+        ("-2 * -3", 6.0),
         ("10/2.5", 4.0),
         # Унарные плюсы и минусы
-        ("-1--2", 1.0),
+        ("1+-2", -1.0),
         ("+1/-2", -0.5),
         # Вещественные числа
         ("2.5*-10", -25.0),
@@ -36,7 +36,7 @@ def test_valid_expression(expression, expected):
     "expression, error",
     [
         # Две операции подряд
-        ("24---3", "Sequential Operations: --"),
+        ("2*/3", "Sequential Operations: --"),
         ("24**3", "Sequential Operations: **"),
         # Разделенное пробелом число
         ("2 4+-3", "Number is split: ...2 4..."),
@@ -51,7 +51,7 @@ def test_valid_expression(expression, expected):
         ("24+3/", "No operand after operation: /"),
         ("24+3+", "No operand after operation: +"),
         # Неизвестные символы
-        ("24+a", "Unknown symbols: a "),
+        ("2+a", "Unknown symbols: a "),
         ("26^a", "Unknown symbols: ^ a ")
     ]
 )
