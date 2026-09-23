@@ -15,12 +15,12 @@ def calc_dump(expr, calculated_expression):
         "expression": expr,
         "result": calculated_expression}
 
-    with open("logs/successful_launches.json", "r") as file:
+    with open("logs/successful_launches.json", "r", encoding="utf-8") as file:
         launches = json.load(file)
 
     launches.append(data)
 
-    with open("logs/successful_launches.json", "w") as file:
+    with open("logs/successful_launches.json", "w", encoding="utf-8") as file:
         json.dump(launches, file, indent=2)
 
 def convert_dump(value, converted_value, from_metric, to_metric):
@@ -40,10 +40,10 @@ def convert_dump(value, converted_value, from_metric, to_metric):
         "value": str(value)+from_metric,
         "converted value": str(converted_value)+to_metric}
 
-    with open("logs/successful_launches.json", "r") as file:
+    with open("logs/successful_launches.json", "r", encoding="utf-8") as file:
         launches = json.load(file)
 
     launches.append(data)
 
-    with open("logs/successful_launches.json", "w") as file:
+    with open("logs/successful_launches.json", "w", encoding="utf-8") as file:
         json.dump(launches, file, indent=2)
