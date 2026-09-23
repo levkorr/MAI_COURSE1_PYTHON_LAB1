@@ -1,5 +1,5 @@
-import pytest
 import re
+import pytest
 from toolkit.tokenizer import tokenize, shunting_yard
 from toolkit.calculator import calculate
 from toolkit.validator import initial_validation_calc, validation_calc
@@ -28,8 +28,7 @@ from toolkit.validator import initial_validation_calc, validation_calc
     ]
 )
 def test_valid_expression(expression, expected):
-    assert calculate(shunting_yard(tokenize(expression))
-                     ) == pytest.approx(expected)
+    assert calculate(shunting_yard(tokenize(expression))) == pytest.approx(expected)
 
 
 # Неуспешные запуски

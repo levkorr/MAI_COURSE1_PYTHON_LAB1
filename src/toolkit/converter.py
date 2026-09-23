@@ -9,6 +9,8 @@ def convert(value, from_metric, to_metric):
     Returns:
         Конвертированное значение
     '''
+    result = 0
+
     metrics = from_metric+"_to_"+to_metric  # Создаем вид для словаря
     metrics_dict = {"mm_to_cm": "-10",  # - Означает, что нужно делить
                     "cm_to_mm": "+10",  # + Означает, что нужно умножить
@@ -29,20 +31,21 @@ def convert(value, from_metric, to_metric):
     # Если линейный перевод величин возможен:
     if metrics in metrics_dict:
         if metrics_dict[metrics][0] == "-":  # Если надо делить
-            return (value/int(metrics_dict[metrics][1:]))
+            result = value/int(metrics_dict[metrics][1:])
         else:  # Если надо умножать
-            return (value*int(metrics_dict[metrics][1:]))
+            result = value*int(metrics_dict[metrics][1:])
 
     # Если это температура (нелинейный перевод)
     elif metrics == "c_to_f":
-        return (value*9/5)+32
+        result = value*9/5+32
     elif metrics == "f_to_c":
-        return (value-32)*5/9
+        result = (value-32)*5/9
     elif metrics == "c_to_k":
-        return (value+273.15)
+        result = value+273.15
     elif metrics == "k_to_c":
-        return (value-273.15)
+        result = value-273.15
     elif metrics == "f_to_k":
-        return (value - 32) * 5/9 + 273.15
+        result = (value - 32) * 5/9 + 273.15
     elif metrics == "k_to_f":
-        return (value - 273.15) * 9/5 + 32
+        result = (value - 273.15) * 9/5 + 32
+    return result

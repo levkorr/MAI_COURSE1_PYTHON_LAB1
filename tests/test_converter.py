@@ -1,5 +1,5 @@
-import pytest
 import re
+import pytest
 from toolkit.converter import convert
 from toolkit.validator import validation_convert
 

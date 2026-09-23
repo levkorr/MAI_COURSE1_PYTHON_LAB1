@@ -121,7 +121,8 @@ def split_number(expr):
     '''
     expr = expr.split()
     for i in range(len(expr)-1):
-        if (expr[i][-1].isdigit() or expr[i][-1] == ".") and (expr[i+1][0].isdigit() or expr[i+1][0] == "."):
+        if (expr[i][-1].isdigit() or expr[i][-1] == ".") and \
+            (expr[i+1][0].isdigit() or expr[i+1][0] == "."):
             return [True, f"...{expr[i][-1]} {expr[i+1][0]}..."]
     return [False, 0]
 
@@ -129,7 +130,7 @@ def split_number(expr):
 # Ошибки для валидации конвертации
 
 
-def unknown_metrics(value, from_metric, to_metric):
+def unknown_metrics(from_metric, to_metric):
     ''' Проверяет, нет ли неизвестных величин
 
     Args:
@@ -152,7 +153,7 @@ def unknown_metrics(value, from_metric, to_metric):
     return [False, 0]
 
 
-def wrong_metrics_type(value, from_metric, to_metric):
+def wrong_metrics_type(from_metric, to_metric):
     ''' Проверяет что все величины относятся к одной группе
 
     Args:
@@ -167,14 +168,14 @@ def wrong_metrics_type(value, from_metric, to_metric):
     '''
     if from_metric in ["cm", "mm", "m", "km"] and to_metric not in ["cm", "mm", "m", "km"]:
         return [True, to_metric]
-    elif from_metric in ["g", "kg"] and to_metric not in ["g", "kg"]:
+    if from_metric in ["g", "kg"] and to_metric not in ["g", "kg"]:
         return [True, to_metric]
-    elif from_metric in ["c", "f", "k"] and to_metric not in ["c", "f", "k"]:
+    if from_metric in ["c", "f", "k"] and to_metric not in ["c", "f", "k"]:
         return [True, to_metric]
     return [False, 0]
 
 
-def below_absolute_zero(value, from_metric, to_metric):
+def below_absolute_zero(value, from_metric,):
     ''' Проверяет, не является ли значение температуры ниже абсолютного нуля
 
     Args:

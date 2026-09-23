@@ -1,6 +1,18 @@
-from .errors import *
-
-# Валидация токенизированного выражения для калькуляции
+from .errors import (
+    # validation_calc:
+    operation_before_first_operand,
+    sequential_operations,
+    float_mistake,
+    # initial_validation_calc:
+    division_by_zero,
+    no_operand_after_operation,
+    split_number,
+    unknown_symbols,
+    # validation_convert
+    unknown_metrics,
+    wrong_metrics_type,
+    below_absolute_zero,
+)
 
 
 def validation_calc(tokens):
@@ -25,7 +37,6 @@ def validation_calc(tokens):
         raise ValueError(f"Float mistake: {float_mistake(tokens)[1]}")
     return True
 
-# Изначальная валидация выражения для калькуляции
 
 
 def initial_validation_calc(expr):
@@ -53,7 +64,6 @@ def initial_validation_calc(expr):
         raise ValueError(f"Unknown symbols: {unknown_symbols(expr)[1]}")
     return True
 
-# Валидация конвертации
 
 
 def validation_convert(value, from_metric, to_metric):
@@ -70,33 +80,13 @@ def validation_convert(value, from_metric, to_metric):
     Raises:
         ValueError с указанием на ошибку: если есть ошибка
     '''
-    if unknown_metrics(value, from_metric, to_metric)[0]:
+    if unknown_metrics(from_metric, to_metric)[0]:
         raise ValueError(
-            f"Unknown metrics: {unknown_metrics(value, from_metric, to_metric)[1]}")
-    if wrong_metrics_type(value, from_metric, to_metric)[0]:
+            f"Unknown metrics: {unknown_metrics(from_metric, to_metric)[1]}")
+    if wrong_metrics_type(from_metric, to_metric)[0]:
         raise ValueError(
             f"Cant convert between different Types: from {from_metric} to {to_metric}")
-    if below_absolute_zero(value, from_metric, to_metric)[0]:
+    if below_absolute_zero(value, from_metric)[0]:
         raise ValueError(
             f"Temperature below absolute zero: {value}{from_metric}")
     return True
-
-
-'''
-def cli_validation(argv):
-    if len(argv)<2:
-        raise ValueError("Not enough arguments, try \"python -m toolkit --help\"")
-    else:
-        if argv[1]=="calc":
-            if len(argv)<3:
-                raise ValueError("Not enough arguments, try \"python -m toolkit --help\"")
-        elif argv[2]=="convert":
-            if len(argv)<6:
-                raise ValueError("Not enough arguments, try \"python -m toolkit --help\"")
-            if argv[3]!="--from":
-                raise ValueError(f"Unknown argument: {argv[3]}, try \"python -m toolkit --help\"")
-            if argv[5]!="--to_metric":
-                raise ValueError(f"Unknown argument: {argv[5]}, try \"python -m toolkit --help\"")
-        else:
-            raise ValueError(f"Unknown argument: {argv[2]}, try \"python -m toolkit --help\"")
-            '''
