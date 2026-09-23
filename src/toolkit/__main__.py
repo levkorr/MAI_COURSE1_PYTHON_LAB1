@@ -1,5 +1,7 @@
 import sys
+
 from sys import argv
+from .json_dump import dump
 from .tokenizer import tokenize, shunting_yard
 from .calculator import calculate
 from .validator import validation_calc, validation_convert, initial_validation_calc
@@ -24,8 +26,11 @@ if __name__ == "__main__":
             calculated_expression = calculate(rpn_expression)  # Итоговый подсчет
 
             print(calculated_expression)  # Итоговый вывод
+            dump(expr, calculated_expression) # Выгрузка успешного запуска
+
             sys.exit(0)  # Успешное завершение программы
 
+            print("hello world")
         elif argv[1] == "convert":  # Если конвертация
             value = float(argv[2])  # Значение
             from_metric = argv[4].lower()  # Из какой величины
