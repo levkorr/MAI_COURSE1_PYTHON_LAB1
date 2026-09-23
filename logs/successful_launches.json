@@ -13,5 +13,20 @@
     "type": "convertation",
     "value": "129.0kg",
     "converted value": "129000.0g"
+  },
+  {
+    "type": "calculation",
+    "expression": "25+3",
+    "result": 28
+  },
+  {
+    "type": "calculation",
+    "expression": "278-25",
+    "result": 253
+  },
+  {
+    "type": "convertation",
+    "value": "10.0cm",
+    "converted value": "0.1m"
   }
 ]
