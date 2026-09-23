@@ -1,7 +1,8 @@
 from .errors import *
 
 # Валидация токенизированного выражения для калькуляции
-# В случае ошибки выводит ошибку в stderr и программа завершается с кодом 2
+
+
 def validation_calc(tokens):
     ''' Выполняет валидацию токенизированного выражения калькулятора.
 
@@ -15,15 +16,18 @@ def validation_calc(tokens):
         ValueError с указанием на ошибку: если выражение содержит ошибку
     '''
     if operation_before_first_operand(tokens)[0]:
-        raise ValueError(f"Operation before the first operand: {operation_before_first_operand(tokens)[1]}")
+        raise ValueError(
+            f"Operation before the first operand: {operation_before_first_operand(tokens)[1]}")
     if sequential_operations(tokens)[0]:
-        raise ValueError(f"Sequential Operations: {sequential_operations(tokens)[1]}")
+        raise ValueError(
+            f"Sequential Operations: {sequential_operations(tokens)[1]}")
     if float_mistake(tokens)[0]:
         raise ValueError(f"Float mistake: {float_mistake(tokens)[1]}")
     return True
 
 # Изначальная валидация выражения для калькуляции
-# В случае ошибки выводит ошибку в stderr и программа завершается с кодом 2
+
+
 def initial_validation_calc(expr):
     ''' Выполняет предварительную валидацию арифметического выражения
 
@@ -38,9 +42,11 @@ def initial_validation_calc(expr):
         ZeroDivisionError с указанием на деление: При делении на 0
     '''
     if division_by_zero(expr)[0]:
-        raise ZeroDivisionError(f"Division by zero occurred: {division_by_zero(expr)[1]}")
+        raise ZeroDivisionError(
+            f"Division by zero occurred: {division_by_zero(expr)[1]}")
     if no_operand_after_operation(expr)[0]:
-        raise ValueError(f"No operand after operation: {no_operand_after_operation(expr)[1]}")
+        raise ValueError(
+            f"No operand after operation: {no_operand_after_operation(expr)[1]}")
     if split_number(expr)[0]:
         raise ValueError(f"Number is split: {split_number(expr)[1]}")
     if unknown_symbols(expr)[0]:
@@ -48,7 +54,8 @@ def initial_validation_calc(expr):
     return True
 
 # Валидация конвертации
-# В случае ошибки выводит ошибку в stderr и программа завершается с кодом 2
+
+
 def validation_convert(value, from_metric, to_metric):
     ''' Выполняет валидацию конвертации
 
@@ -64,11 +71,14 @@ def validation_convert(value, from_metric, to_metric):
         ValueError с указанием на ошибку: если есть ошибка
     '''
     if unknown_metrics(value, from_metric, to_metric)[0]:
-        raise ValueError(f"Unknown metrics: {unknown_metrics(value, from_metric, to_metric)[1]}")
+        raise ValueError(
+            f"Unknown metrics: {unknown_metrics(value, from_metric, to_metric)[1]}")
     if wrong_metrics_type(value, from_metric, to_metric)[0]:
-        raise ValueError(f"Cant convert between different Types: from {from_metric} to {to_metric}")
+        raise ValueError(
+            f"Cant convert between different Types: from {from_metric} to {to_metric}")
     if below_absolute_zero(value, from_metric, to_metric)[0]:
-        raise ValueError(f"Temperature below absolute zero: {value}{from_metric}")
+        raise ValueError(
+            f"Temperature below absolute zero: {value}{from_metric}")
     return True
 
 

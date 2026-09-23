@@ -1,5 +1,6 @@
 # Ошибки для валидации токенизированного выражения калькуляции
 
+
 def sequential_operations(tokens):
     '''Проверяет нет ли двух операций подряд
 
@@ -16,6 +17,7 @@ def sequential_operations(tokens):
             return [True, tokens[i]+tokens[i+1]]
     return [False, 0]
 
+
 def float_mistake(tokens):
     '''Проверяет не допущена ли ошибка в записи вещественного числа
 
@@ -28,9 +30,10 @@ def float_mistake(tokens):
             Если ошибка не найдена: False и 0
     '''
     for token in tokens:
-        if token.count(".") > 1 or token[-1]==".":
+        if token.count(".") > 1 or token[-1] == ".":
             return [True, token]
     return [False, 0]
+
 
 def operation_before_first_operand(tokens):
     '''Проверяет не начинается ли выражение с операции
@@ -47,7 +50,9 @@ def operation_before_first_operand(tokens):
         return [True, tokens[0]]
     return [False, 0]
 
+
 # Ошибки для валидации иначального выражения калькуляции
+
 
 def division_by_zero(expr):
     '''Проверяет нет ли деления на 0
@@ -60,13 +65,12 @@ def division_by_zero(expr):
             Если ошибка найдена: True и найденная операция деления на 0
             Если ошибка не найдена: False и 0
     '''
-    expr = expr.replace(" ","")
+    expr = expr.replace(" ", "")
     if "/0" in expr:
         return [True, "/0"]
     return [False, 0]
 
-# Проверяем что выражение не заканчивается на операцию
-# В случае когда выражение заканчивается на операцию, возвращает True и эту операцию
+
 def no_operand_after_operation(expr):
     '''Проверяет не заканчивается ли выражение на операцию
 
@@ -77,14 +81,13 @@ def no_operand_after_operation(expr):
         Список из двух элементов:
             Если ошибка найдена: True и найденная операция
             Если ошибка не найдена: False и 0
-    '''    
-    expr = expr.replace(" ","")
+    '''
+    expr = expr.replace(" ", "")
     if expr[-1] in ["+", "-", "*", "/"]:
         return [True, expr[-1]]
     return [False, 0]
 
-# Проверяет нет ли неизвестных символов
-# В случае неизвестных символов, возвращает True и все неизвестные символы
+
 def unknown_symbols(expr):
     '''Проверяет нет ли в записи выражения неизвестных символов
 
@@ -95,7 +98,7 @@ def unknown_symbols(expr):
         Список из двух элементов:
             Если ошибка найдена: True и найденные неизвестные символы
             Если ошибка не найдена: False и 0
-    '''   
+    '''
     unknown = ""
     for char in expr:
         if char not in "0123456789/*+-. ":
@@ -103,6 +106,7 @@ def unknown_symbols(expr):
     if len(unknown) != 0:
         return [True, unknown]
     return [False, 0]
+
 
 def split_number(expr):
     '''Проверяет нет ли в записи выражения чисел, символы которых разделены пробелами
@@ -114,15 +118,16 @@ def split_number(expr):
         Список из двух элементов:
             Если ошибка найдена: True и найденная часть числа разделенного пробелом
             Если ошибка не найдена: False и 0
-    '''   
+    '''
     expr = expr.split()
     for i in range(len(expr)-1):
-        if (expr[i][-1].isdigit() or expr[i][-1]==".") and (expr[i+1][0].isdigit() or expr[i+1][0]=="."):
+        if (expr[i][-1].isdigit() or expr[i][-1] == ".") and (expr[i+1][0].isdigit() or expr[i+1][0] == "."):
             return [True, f"...{expr[i][-1]} {expr[i+1][0]}..."]
     return [False, 0]
 
 
 # Ошибки для валидации конвертации
+
 
 def unknown_metrics(value, from_metric, to_metric):
     ''' Проверяет, нет ли неизвестных величин
@@ -131,7 +136,7 @@ def unknown_metrics(value, from_metric, to_metric):
         value: Значение которое нужно перевести
         from_metric: Из какой величины нужно перевести значение
         to_metric: В какую величину нужно перевести значение
-    
+
     Returns:
         Список из двух элементов:
             Если ошибка найдена: True и найденные неизвестные величины
@@ -146,8 +151,7 @@ def unknown_metrics(value, from_metric, to_metric):
         return [True, unknown]
     return [False, 0]
 
-# Проверят что все величины относятся к одной группе (длина, масса, температура)
-# В случае если величины из разных групп, возвращает True
+
 def wrong_metrics_type(value, from_metric, to_metric):
     ''' Проверяет что все величины относятся к одной группе
 
@@ -155,12 +159,12 @@ def wrong_metrics_type(value, from_metric, to_metric):
         value: Значение которое нужно перевести
         from_metric: Из какой величины нужно перевести значение
         to_metric: В какую величину нужно перевести значение
-    
+
     Returns:
         Список из двух элементов:
             Если ошибка найдена: True и величина из неправильной группы
             Если ошибка не найдена: False и 0
-    '''   
+    '''
     if from_metric in ["cm", "mm", "m", "km"] and to_metric not in ["cm", "mm", "m", "km"]:
         return [True, to_metric]
     elif from_metric in ["g", "kg"] and to_metric not in ["g", "kg"]:
@@ -169,8 +173,7 @@ def wrong_metrics_type(value, from_metric, to_metric):
         return [True, to_metric]
     return [False, 0]
 
-# Проверяет что у температуры значение не ниже абсолютного нуля
-# В случае когда температура ниже абсолютного нуля, возвращает True
+
 def below_absolute_zero(value, from_metric, to_metric):
     ''' Проверяет, не является ли значение температуры ниже абсолютного нуля
 
@@ -178,7 +181,7 @@ def below_absolute_zero(value, from_metric, to_metric):
         value: Значение которое нужно перевести
         from_metric: Из какой величины нужно перевести значение
         to_metric: В какую величину нужно перевести значение
-    
+
     Returns:
         Список из двух элементов:
             Если ошибка найдена: True и значение температуры
