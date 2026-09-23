@@ -12,8 +12,8 @@ python -m toolkit --help
 ```
 ### Калькулятор поддерживает:
 
-- Рациональные числа
-- Операции `+`, `-`, `*`, `/`.
+- Вещественные и целые числа.
+- Операции `+`, `-`, `*`, `/`, `//`, `%`.
 - Унарный `+` и `-` перед числом.
 - Пробелы между составляющими выражения.
 
@@ -28,14 +28,16 @@ python -m toolkit --help
 
 ```text
 lab_01/
-  pyproject.toml
-  README.md
+  logs/
+    successful_launches.json
   src/toolkit/
     __init__.py
     __main__.py
     calculator.py
+    constants.py
     converter.py
     errors.py
+    json_dump.py
     tokenizer.py
     validator.py
   tests/
@@ -43,6 +45,10 @@ lab_01/
     conftest.py
     test_calculator.py
     test_converter.py
+  .gitignore
+  pyproject.toml
+  pytest.ini
+  README.md
 ```
 
 ## Методика
@@ -61,9 +67,11 @@ lab_01/
 - Запись выражения начинается с операции
 - В выражении есть две операции подряд
 - В выражении есть нецелые числа, написанные с ошибкой
-4. Токенизированное выражение становится постфиксным представлением с помощью Shunting Yard Argorith
+4. Токенизированное выражение становится постфиксным представлением с помощью Shunting Yard Argorithm
 5. Постфиксное представление считается с помощью стека
-6. Выводится ответ, программа завершается с кодом 0
+6. Выводится ответ
+7. Данные об успешном запуске заносятся в successful_launches.json
+8. Программа завершается с кодом 0
 
 ### Конвертер
 
@@ -88,7 +96,7 @@ git clone https://github.com/levkorr/MAI_COURSE1_PYTHON_LAB1
 python -m venv venv
 .venv/bin/activate
 ```
-Установить toolkit
+Установить toolkit:
 ```
 pip install -e .
 ```
