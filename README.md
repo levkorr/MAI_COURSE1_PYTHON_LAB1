@@ -90,5 +90,5 @@ python -m venv venv
 ```
 Установить toolkit
 ```
-pip install -e.
+pip install -e .
 ```

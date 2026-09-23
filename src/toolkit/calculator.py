@@ -9,9 +9,15 @@ def calculate(rpn_tokens):
     '''
     stack = []
 
+    for id, token in enumerate(rpn_tokens):
+        if "." in token:
+            rpn_tokens[id] = float(token)
+        elif token.lstrip("+-").isdigit():
+            rpn_tokens[id] = int(token)
+
     for token in rpn_tokens:
-        if token.lstrip("+-").isdigit() or "." in token:  # Если число
-            stack.append(float(token))
+        if type(token) == int or type(token) == float:  # Если число
+            stack.append(token)
         else:  # Если операция
             # Порядок чисел важен для вычитания
             b = stack.pop()  # Последнее число в стэке
@@ -24,6 +30,12 @@ def calculate(rpn_tokens):
                 stack.append(a-b)
             elif token == "/":
                 stack.append(a/b)
+            elif token == "//":
+                if type(a) == int and type(b) == int:
+                    stack.append(a//b)
+                else:
+                    raise ValueError(
+                        f"The operation // only works with int: {a}//{b}")
             elif token == "*":
                 stack.append(a*b)
 

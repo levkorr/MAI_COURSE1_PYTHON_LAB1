@@ -26,5 +26,29 @@
   {
     "value": "129.0kg",
     "converted value": "129000.0g"
+  },
+  {
+    "expression": "2//3",
+    "result": "2"
+  },
+  {
+    "expression": "2//3",
+    "result": "2"
+  },
+  {
+    "expression": "2//3",
+    "result": "2"
+  },
+  {
+    "expression": "2//3",
+    "result": "2"
+  },
+  {
+    "expression": "2//3",
+    "result": 0.6666666666666666
+  },
+  {
+    "expression": "2//3",
+    "result": 0
   }
 ]
