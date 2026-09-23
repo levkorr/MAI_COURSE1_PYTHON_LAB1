@@ -10,5 +10,21 @@
   {
     "expression": "-136 ++ 25266++24.3 -4 *+4-+5- -0.6",
     "result": 25133.899999999998
+  },
+  {
+    "expression": "120+6",
+    "result": 126.0
+  },
+  {
+    "expression": "80.0",
+    "result": 80.0
+  },
+  {
+    "expression": "80.0",
+    "result": 80.0
+  },
+  {
+    "value": "129.0kg",
+    "converted value": "129000.0g"
   }
 ]

@@ -1,7 +1,6 @@
 import sys
-
 from sys import argv
-from .json_dump import dump
+from .json_dump import calc_dump, convert_dump
 from .tokenizer import tokenize, shunting_yard
 from .calculator import calculate
 from .validator import validation_calc, validation_convert, initial_validation_calc
@@ -16,7 +15,6 @@ if __name__ == "__main__":
         #cli_validation(argv)
         if argv[1] == "calc":  # Если калькуляция
             expr = argv[2] # Выражение
-
             initial_validation_calc(expr)  # Предварительная валидация выражения
             tokenized_expression = tokenize(expr)  # Токенизация выражения
             # Валиадция токенизированного выражения
@@ -26,11 +24,9 @@ if __name__ == "__main__":
             calculated_expression = calculate(rpn_expression)  # Итоговый подсчет
 
             print(calculated_expression)  # Итоговый вывод
-            dump(expr, calculated_expression) # Выгрузка успешного запуска
-
+            calc_dump(expr, calculated_expression)  # Выгрузка успешного запуска
             sys.exit(0)  # Успешное завершение программы
 
-            print("hello world")
         elif argv[1] == "convert":  # Если конвертация
             value = float(argv[2])  # Значение
             from_metric = argv[4].lower()  # Из какой величины
@@ -40,6 +36,7 @@ if __name__ == "__main__":
             converted_value = convert(value, from_metric, to_metric)  # Перевод величин
 
             print(converted_value)  # Итоговый вывод
+            convert_dump(value, converted_value, from_metric, to_metric)  # Выгрузка успешного запуска
             sys.exit(0)  # Успешное завершение программы
     except Exception as e:
         print(e, file=sys.stderr)
