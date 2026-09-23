@@ -1,6 +1,5 @@
 import sys
 import argparse
-from sys import argv
 from .json_dump import calc_dump, convert_dump
 from .calculator import calculate
 from .tokenizer import tokenize, shunting_yard
