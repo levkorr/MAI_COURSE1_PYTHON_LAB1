@@ -11,6 +11,7 @@ def calc_dump(expr, calculated_expression):
         None
     '''
     data = {
+        "type": "calculation",
         "expression": expr,
         "result": calculated_expression}
 
@@ -35,6 +36,7 @@ def convert_dump(value, converted_value, from_metric, to_metric):
         None
     '''
     data = {
+        "type": "convertation",
         "value": str(value)+from_metric,
         "converted value": str(converted_value)+to_metric}
 
