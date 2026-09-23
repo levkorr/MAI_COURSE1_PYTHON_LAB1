@@ -9,7 +9,7 @@ from .converter import convert
 def main():
     # Создаем парсер через argparse
     parser = argparse.ArgumentParser(prog="toolkit")
-    commands = parser.add_subparsers(dest="command", required=True)
+    commands = parser.add_subparsers(dest="command")
 
     # Для команды calc
     parse_calc = commands.add_parser("calc")
@@ -18,9 +18,10 @@ def main():
     # Для команды convert
     parse_convert = commands.add_parser("convert")
     parse_convert.add_argument("value")
-    parse_convert.add_argument("--from", dest="from_metric", required=True)
-    parse_convert.add_argument("--to", dest="to_metric", required=True)
+    parse_convert.add_argument("--from", dest="from_metric", required="True")
+    parse_convert.add_argument("--to", dest="to_metric", required="True")
 
+    # Аргументы парсера
     args = parser.parse_args()
 
     if args.command == "calc":  # Если калькуляция
@@ -29,7 +30,7 @@ def main():
         initial_validation_calc(expr)  # Предварительная валидация выражения
         tokenized_expression = tokenize(expr)  # Токенизация выражения
         validation_calc(tokenized_expression)  # Валиадция токенизированного выражения
-        rpn_expression = shunting_yard(tokenized_expression)  # Обратная польская нотация токенизированного выражения
+        rpn_expression = shunting_yard(tokenized_expression)  # ОПЗ токенизированного выражения
         calculated_expression = calculate(rpn_expression)  # Итоговый подсчет
 
         print(calculated_expression)
@@ -47,8 +48,6 @@ def main():
         print(converted_value)  # Итоговый вывод
         convert_dump(value, converted_value, from_metric, to_metric)  # Выгрузка успешного запуска
         sys.exit(0)  # Успешное завершение программы
-
-
 
 if __name__ == "__main__":
     try:

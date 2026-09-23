@@ -90,3 +90,11 @@ def validation_convert(value, from_metric, to_metric):
         raise ValueError(
             f"Temperature below absolute zero: {value}{from_metric}")
     return True
+'''
+def argparse_validation(args):
+    if args.command is None:
+        raise ValueError("You need to specify a command: calc or convert")
+    if args.command == "calc":
+        if args.expression is None:
+            raise ValueError("You need to specify a valid math expression after \"calc\"")
+        '''

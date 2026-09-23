@@ -1,3 +1,5 @@
+from .constants import OPERATIONS, PRECEDANCE
+
 def tokenize(expr):
     ''' Токенизирует математическое выражение, 
         токен это операция или число или число с бинарным символом
@@ -13,7 +15,7 @@ def tokenize(expr):
     tokens = []
     state = "START"
     current_token = ""
-    
+
     for char in expr:  # Проходим по числам
         if state == "START":  # Если это новый символ
             if char.isdigit():  # Если это число
@@ -23,12 +25,12 @@ def tokenize(expr):
             elif char in ["-", "+", "."]:
                 current_token = char
                 state = "NUMBER"
-            elif char in ["*", "/", "|", "%"]:  # Если это лишняя операция, присекается при валидации
+            elif char in ["*", "/", "|", "%"]:  # Если это лишняя операция
                 tokens.append(char)
         elif state == "NUMBER":  # Если число уже началось
             if char.isdigit() or char == ".":  # Если это составляющая числа
                 current_token += char
-            elif char in ["+", "-", "*", "/", "|", "%"]:  # Если это конец числа
+            elif char in ["-", "+", "*", "/", "|", "%"]:  # Если это конец числа
                 tokens.append(current_token)
                 tokens.append(char)
                 current_token = ""
@@ -52,12 +54,12 @@ def shunting_yard(tokens):
     output = []
     operators = []
 
-    weight = {"+": 1, "-": 1, "*": 2, "/": 2, "//": 2, "%": 2}  # Приоритеты операций
+    weight = PRECEDANCE  # Приоритеты операций
 
     for token in tokens:
         if token.lstrip("+-").isdigit() or "." in token:  # Если это число
             output.append(token)
-        elif token in ["+", "-", "*", "/", "//", "%"]:  # Если это операция
+        elif token in OPERATIONS:  # Если это операция
             while len(operators) != 0 and weight[operators[-1]] >= weight[token]:
                 output.append(operators.pop())
             operators.append(token)

@@ -16,7 +16,7 @@ def calculate(rpn_tokens):
             rpn_tokens[id] = int(token)
 
     for token in rpn_tokens:
-        if type(token) == int or type(token) == float:  # Если число
+        if isinstance(token, (int, float)):  # Если число
             stack.append(token)
         else:  # Если операция
             # Порядок чисел важен для вычитания

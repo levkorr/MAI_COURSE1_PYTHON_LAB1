@@ -1,5 +1,11 @@
-# Ошибки для валидации токенизированного выражения калькуляции
+from .constants import (OPERATIONS,
+                        ALPHABET,
+                        METRICS,
+                        LENGTH,
+                        TEMPERATURE,
+                        WEIGHT)
 
+# Ошибки для валидации токенизированного выражения калькуляции
 
 def sequential_operations(tokens):
     '''Проверяет нет ли двух операций подряд
@@ -13,7 +19,7 @@ def sequential_operations(tokens):
             Если ошибка не найдена: False и 0
     '''
     for i in range(len(tokens)-1):
-        if tokens[i] in ["+", "-", "*", "/", "//", "%"] and tokens[i+1] in ["+", "-", "*", "/", "%", "//"]:
+        if tokens[i] in OPERATIONS and tokens[i+1] in OPERATIONS:
             return [True, tokens[i]+tokens[i+1]]
     return [False, 0]
 
@@ -46,7 +52,7 @@ def operation_before_first_operand(tokens):
             Если ошибка найдена: True и найденная операция
             Если ошибка не найдена: False и 0
     '''
-    if tokens[0] in ["+", "-", "*", "/", "//", "%"]:
+    if tokens[0] in OPERATIONS:
         return [True, tokens[0]]
     return [False, 0]
 
@@ -83,7 +89,7 @@ def no_operand_after_operation(expr):
             Если ошибка не найдена: False и 0
     '''
     expr = expr.replace(" ", "")
-    if expr[-1] in ["+", "-", "*", "/", "//", "%"]:
+    if expr[-1] in OPERATIONS:
         return [True, expr[-1]]
     return [False, 0]
 
@@ -101,7 +107,7 @@ def unknown_symbols(expr):
     '''
     unknown = ""
     for char in expr:
-        if char not in "0123456789%/*+-. ":
+        if char not in ALPHABET:
             unknown += f"{char} "
     if len(unknown) != 0:
         return [True, unknown]
@@ -144,9 +150,9 @@ def unknown_metrics(from_metric, to_metric):
             Если ошибка не найдена: False и 0
     '''
     unknown = ""
-    if from_metric not in ["cm", "mm", "m", "km", "kg", "g", "c", "f", "k"]:
+    if from_metric not in METRICS:
         unknown += f"{from_metric} "
-    if to_metric not in ["cm", "mm", "m", "km", "kg", "g", "c", "f", "k"]:
+    if to_metric not in METRICS:
         unknown += f"{to_metric}"
     if len(unknown) != 0:
         return [True, unknown]
@@ -166,11 +172,11 @@ def wrong_metrics_type(from_metric, to_metric):
             Если ошибка найдена: True и величина из неправильной группы
             Если ошибка не найдена: False и 0
     '''
-    if from_metric in ["cm", "mm", "m", "km"] and to_metric not in ["cm", "mm", "m", "km"]:
+    if from_metric in LENGTH and to_metric not in LENGTH:
         return [True, to_metric]
-    if from_metric in ["g", "kg"] and to_metric not in ["g", "kg"]:
+    if from_metric in WEIGHT and to_metric not in WEIGHT:
         return [True, to_metric]
-    if from_metric in ["c", "f", "k"] and to_metric not in ["c", "f", "k"]:
+    if from_metric in TEMPERATURE and to_metric not in TEMPERATURE:
         return [True, to_metric]
     return [False, 0]
 

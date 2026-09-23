@@ -28,5 +28,35 @@
     "type": "convertation",
     "value": "10.0cm",
     "converted value": "0.1m"
+  },
+  {
+    "type": "calculation",
+    "expression": "-136++25266++24.3-4*+4-+5--.6",
+    "result": 25133.899999999998
+  },
+  {
+    "type": "calculation",
+    "expression": "-136++25266//24-4*+4-+5--.6",
+    "result": 895.6
+  },
+  {
+    "type": "calculation",
+    "expression": "256-+23",
+    "result": 233
+  },
+  {
+    "type": "calculation",
+    "expression": "129",
+    "result": 129
+  },
+  {
+    "type": "calculation",
+    "expression": "129",
+    "result": 129
+  },
+  {
+    "type": "calculation",
+    "expression": "225+364/2",
+    "result": 407.0
   }
 ]
