@@ -50,5 +50,17 @@
   {
     "expression": "2//3",
     "result": 0
+  },
+  {
+    "expression": "4.5*3%3",
+    "result": 4.5
+  },
+  {
+    "expression": "4.5*3%3",
+    "result": 4.5
+  },
+  {
+    "expression": "3%3",
+    "result": 0
   }
 ]

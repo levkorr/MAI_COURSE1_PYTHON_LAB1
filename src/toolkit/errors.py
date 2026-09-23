@@ -13,7 +13,7 @@ def sequential_operations(tokens):
             Если ошибка не найдена: False и 0
     '''
     for i in range(len(tokens)-1):
-        if tokens[i] in ["+", "-", "*", "/"] and tokens[i+1] in ["+", "-", "*", "/"]:
+        if tokens[i] in ["+", "-", "*", "/", "//", "%"] and tokens[i+1] in ["+", "-", "*", "/", "%", "//"]:
             return [True, tokens[i]+tokens[i+1]]
     return [False, 0]
 
@@ -46,7 +46,7 @@ def operation_before_first_operand(tokens):
             Если ошибка найдена: True и найденная операция
             Если ошибка не найдена: False и 0
     '''
-    if tokens[0] in ["*", "/", "-", "+"]:
+    if tokens[0] in ["+", "-", "*", "/", "//", "%"]:
         return [True, tokens[0]]
     return [False, 0]
 
@@ -83,7 +83,7 @@ def no_operand_after_operation(expr):
             Если ошибка не найдена: False и 0
     '''
     expr = expr.replace(" ", "")
-    if expr[-1] in ["+", "-", "*", "/"]:
+    if expr[-1] in ["+", "-", "*", "/", "//", "%"]:
         return [True, expr[-1]]
     return [False, 0]
 
@@ -101,7 +101,7 @@ def unknown_symbols(expr):
     '''
     unknown = ""
     for char in expr:
-        if char not in "0123456789/*+-. ":
+        if char not in "0123456789%/*+-. ":
             unknown += f"{char} "
     if len(unknown) != 0:
         return [True, unknown]

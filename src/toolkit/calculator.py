@@ -30,13 +30,16 @@ def calculate(rpn_tokens):
                 stack.append(a-b)
             elif token == "/":
                 stack.append(a/b)
+            elif token == "*":
+                stack.append(a*b)
             elif token == "//":
                 if type(a) == int and type(b) == int:
                     stack.append(a//b)
                 else:
-                    raise ValueError(
-                        f"The operation // only works with int: {a}//{b}")
-            elif token == "*":
-                stack.append(a*b)
-
+                    raise ValueError(f"The operation // only works with int: {a}//{b}")
+            elif token == "%":
+                if type(a) == int and type(b) == int:
+                    stack.append(a%b)
+                else:
+                    raise ValueError(f"The operation % only works with int: {a}//{b}")
     return stack[0]
