@@ -59,3 +59,12 @@ def test_invalid_expression(expression, error):
     with pytest.raises(ValueError, match=re.escape(error)):
         initial_validation_calc(expression)
         validation_calc(tokenize(expression))
+
+@pytest.mark.parametrize("expression, error", 
+                         [("2*/0", "Division by zero occurred: /0"),
+                          ("255+432//0", "Division by zero occurred: //0")])
+
+def test_invalid_zero_division_expression(expression, error):
+    with pytest.raises(ZeroDivisionError, match=re.escape(error)):
+        initial_validation_calc(expression)
+        validation_calc(tokenize(expression))

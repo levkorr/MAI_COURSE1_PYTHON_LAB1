@@ -72,6 +72,8 @@ def division_by_zero(expr):
             Если ошибка не найдена: False и 0
     '''
     expr = expr.replace(" ", "")
+    if "//0" in expr:
+        return [True, "//0"]
     if "/0" in expr:
         return [True, "/0"]
     return [False, 0]
