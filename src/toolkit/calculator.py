@@ -41,5 +41,5 @@ def calculate(rpn_tokens):
                 if type(a) == int and type(b) == int:
                     stack.append(a%b)
                 else:
-                    raise ValueError(f"The operation % only works with int: {a}//{b}")
+                    raise ValueError(f"The operation % only works with int: {a}%{b}")
     return stack[0]

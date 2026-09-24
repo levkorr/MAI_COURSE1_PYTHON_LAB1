@@ -52,13 +52,17 @@ def test_valid_expression(expression, expected):
         ("24+3+", "No operand after operation: +"),
         # Неизвестные символы
         ("2+a", "Unknown symbols: a "),
-        ("26^a", "Unknown symbols: ^ a ")
+        ("26^a", "Unknown symbols: ^ a "),
+        # Неправильная работа операторов % и //
+        ("2.5*4//2", "The operation // only works with int: 10.0//2"),
+        ("24-32.5*29%7", "The operation % only works with int: 942.5%7")
     ]
 )
 def test_invalid_expression(expression, error):
     with pytest.raises(ValueError, match=re.escape(error)):
         initial_validation_calc(expression)
         validation_calc(tokenize(expression))
+        calculate(shunting_yard(tokenize(expression)))
 
 @pytest.mark.parametrize("expression, error", 
                          [("2*/0", "Division by zero occurred: /0"),
