@@ -1,6 +1,6 @@
 OPERATIONS = ["+", "-", "*", "/", "//", "%"]
 ALPHABET = "0123456789. +-*/%"
-METRICS = ["cm", "mm", "m", "km", "kg", "g", "c", "f", "k"]
+UNITS = ["cm", "mm", "m", "km", "kg", "g", "c", "f", "k"]
 LENGTH = ["cm", "mm", "m"]
 WEIGHT = ["kg","g"]
 TEMPERATURE = ["c", "f", "k"]

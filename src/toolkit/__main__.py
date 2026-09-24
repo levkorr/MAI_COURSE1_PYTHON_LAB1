@@ -8,18 +8,31 @@ from .converter import convert
 
 def main():
     # Создаем парсер через argparse
-    parser = argparse.ArgumentParser(prog="toolkit")
+    parser = argparse.ArgumentParser(
+        prog="toolkit",
+        description="Calculator and unit converter.",
+        usage="toolkit <command> [arguments]",
+        epilog="Use \"python -m toolkit <command> --help\" for more information."
+    )
     commands = parser.add_subparsers(dest="command")
 
     # Для команды calc
-    parse_calc = commands.add_parser("calc")
+    parse_calc = commands.add_parser(
+        "calc",
+        description="Calculates mathematical expression",
+        epilog="Example: \"python -m toolkit calc \"2+3\"\""
+    )
     parse_calc.add_argument("expression")
 
     # Для команды convert
-    parse_convert = commands.add_parser("convert")
+    parse_convert = commands.add_parser(
+        "convert",
+        description= "Converts value from one unit to another",
+        epilog="Example: \"python -m toolkit convert 10 --from kg --to g\""
+    )
     parse_convert.add_argument("value")
-    parse_convert.add_argument("--from", dest="from_metric", required="True")
-    parse_convert.add_argument("--to", dest="to_metric", required="True")
+    parse_convert.add_argument("--from", dest="from_unit", required="True")
+    parse_convert.add_argument("--to", dest="to_unit", required="True")
 
     # Аргументы парсера
     args = parser.parse_args()
@@ -39,14 +52,14 @@ def main():
 
     elif args.command == "convert":
         value = float(args.value)
-        from_metric = args.from_metric
-        to_metric =  args.to_metric
+        from_unit = args.from_unit
+        to_unit =  args.to_unit
 
-        validation_convert(value, from_metric, to_metric)  # Валидация
-        converted_value = convert(value, from_metric, to_metric)  # Перевод величин
+        validation_convert(value, from_unit, to_unit)  # Валидация
+        converted_value = convert(value, from_unit, to_unit)  # Перевод величин
 
         print(converted_value)  # Итоговый вывод
-        convert_dump(value, converted_value, from_metric, to_metric)  # Выгрузка успешного запуска
+        convert_dump(value, converted_value, from_unit, to_unit)  # Выгрузка успешного запуска
         sys.exit(0)  # Успешное завершение программы
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-from .constants import ALPHABET, LENGTH, METRICS, OPERATIONS, TEMPERATURE, WEIGHT
+from .constants import ALPHABET, LENGTH, UNITS, OPERATIONS, TEMPERATURE, WEIGHT
 
 # Ошибки для валидации токенизированного выражения калькуляции
 
@@ -133,13 +133,12 @@ def split_number(expr):
 # Ошибки для валидации конвертации
 
 
-def unknown_metrics(from_metric, to_metric):
+def unknown_units(from_unit, to_unit):
     ''' Проверяет, нет ли неизвестных величин
 
     Args:
-        value: Значение которое нужно перевести
-        from_metric: Из какой величины нужно перевести значение
-        to_metric: В какую величину нужно перевести значение
+        from_unit: Из какой величины нужно перевести значение
+        to_unit: В какую величину нужно перевести значение
 
     Returns:
         Список из двух элементов:
@@ -147,54 +146,52 @@ def unknown_metrics(from_metric, to_metric):
             Если ошибка не найдена: False и 0
     '''
     unknown = ""
-    if from_metric not in METRICS:
-        unknown += f"{from_metric} "
-    if to_metric not in METRICS:
-        unknown += f"{to_metric}"
+    if from_unit not in UNITS:
+        unknown += f"{from_unit} "
+    if to_unit not in UNITS:
+        unknown += f"{to_unit}"
     if len(unknown) != 0:
         return [True, unknown]
     return [False, 0]
 
 
-def wrong_metrics_type(from_metric, to_metric):
+def wrong_units_type(from_unit, to_unit):
     ''' Проверяет что все величины относятся к одной группе
 
     Args:
-        value: Значение которое нужно перевести
-        from_metric: Из какой величины нужно перевести значение
-        to_metric: В какую величину нужно перевести значение
+        from_unit: Из какой величины нужно перевести значение
+        to_unit: В какую величину нужно перевести значение
 
     Returns:
         Список из двух элементов:
             Если ошибка найдена: True и величина из неправильной группы
             Если ошибка не найдена: False и 0
     '''
-    if from_metric in LENGTH and to_metric not in LENGTH:
-        return [True, to_metric]
-    if from_metric in WEIGHT and to_metric not in WEIGHT:
-        return [True, to_metric]
-    if from_metric in TEMPERATURE and to_metric not in TEMPERATURE:
-        return [True, to_metric]
+    if from_unit in LENGTH and to_unit not in LENGTH:
+        return [True, to_unit]
+    if from_unit in WEIGHT and to_unit not in WEIGHT:
+        return [True, to_unit]
+    if from_unit in TEMPERATURE and to_unit not in TEMPERATURE:
+        return [True, to_unit]
     return [False, 0]
 
 
-def below_absolute_zero(value, from_metric,):
+def below_absolute_zero(value, from_unit):
     ''' Проверяет, не является ли значение температуры ниже абсолютного нуля
 
     Args:
         value: Значение которое нужно перевести
-        from_metric: Из какой величины нужно перевести значение
-        to_metric: В какую величину нужно перевести значение
+        from_unit: Из какой величины нужно перевести значение
 
     Returns:
         Список из двух элементов:
             Если ошибка найдена: True и значение температуры
             Если ошибка не найдена: False и 0
     '''
-    if from_metric == "c" and value < -273.15:
+    if from_unit == "c" and value < -273.15:
         return [True, value]
-    if from_metric == "f" and value < -459.67:
+    if from_unit == "f" and value < -459.67:
         return [True, value]
-    if from_metric == "k" and value < 0:
+    if from_unit == "k" and value < 0:
         return [True, value]
     return [False, 0]

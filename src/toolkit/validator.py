@@ -9,8 +9,8 @@ from .errors import (
     split_number,
     unknown_symbols,
     # validation_convert
-    unknown_metrics,
-    wrong_metrics_type,
+    unknown_units,
+    wrong_units_type,
     below_absolute_zero,
 )
 
@@ -66,13 +66,13 @@ def initial_validation_calc(expr):
 
 
 
-def validation_convert(value, from_metric, to_metric):
+def validation_convert(value, from_unit, to_unit):
     ''' Выполняет валидацию конвертации
 
     Args:
         value: Значение которое нужно перевести
-        from_metric: Из какой величины нужно перевести значение
-        to_metric: В какую величину нужно перевести значение
+        from_unit: Из какой величины нужно перевести значение
+        to_unit: В какую величину нужно перевести значение
 
     Returns:
         True, если валидация пройдена
@@ -80,21 +80,13 @@ def validation_convert(value, from_metric, to_metric):
     Raises:
         ValueError с указанием на ошибку: если есть ошибка
     '''
-    if unknown_metrics(from_metric, to_metric)[0]:
+    if unknown_units(from_unit, to_unit)[0]:
         raise ValueError(
-            f"Unknown metrics: {unknown_metrics(from_metric, to_metric)[1]}")
-    if wrong_metrics_type(from_metric, to_metric)[0]:
+            f"Unknown units: {unknown_units(from_unit, to_unit)[1]}")
+    if wrong_units_type(from_unit, to_unit)[0]:
         raise ValueError(
-            f"Cant convert between different Types: from {from_metric} to {to_metric}")
-    if below_absolute_zero(value, from_metric)[0]:
+            f"Cant convert between different types of units: from {from_unit} to {to_unit}")
+    if below_absolute_zero(value, from_unit)[0]:
         raise ValueError(
-            f"Temperature below absolute zero: {value}{from_metric}")
+            f"Temperature below absolute zero: {value}{from_unit}")
     return True
-'''
-def argparse_validation(args):
-    if args.command is None:
-        raise ValueError("You need to specify a command: calc or convert")
-    if args.command == "calc":
-        if args.expression is None:
-            raise ValueError("You need to specify a valid math expression after \"calc\"")
-        '''
