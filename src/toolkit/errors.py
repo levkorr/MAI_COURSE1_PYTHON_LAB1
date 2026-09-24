@@ -1,9 +1,4 @@
-from .constants import (OPERATIONS,
-                        ALPHABET,
-                        METRICS,
-                        LENGTH,
-                        TEMPERATURE,
-                        WEIGHT)
+from .constants import ALPHABET, LENGTH, METRICS, OPERATIONS, TEMPERATURE, WEIGHT
 
 # Ошибки для валидации токенизированного выражения калькуляции
 
@@ -196,13 +191,10 @@ def below_absolute_zero(value, from_metric,):
             Если ошибка найдена: True и значение температуры
             Если ошибка не найдена: False и 0
     '''
-    if from_metric == "c":
-        if value < -273.15:
-            return [True, value]
-    if from_metric == "f":
-        if value < -459.67:
-            return [True, value]
-    if from_metric == "k":
-        if value < 0:
-            return [True, value]
+    if from_metric == "c" and value < -273.15:
+        return [True, value]
+    if from_metric == "f" and value < -459.67:
+        return [True, value]
+    if from_metric == "k" and value < 0:
+        return [True, value]
     return [False, 0]
