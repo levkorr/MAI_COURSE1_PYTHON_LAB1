@@ -7,6 +7,15 @@ from .validator import validation_convert, validation_calc, initial_validation_c
 from .converter import convert
 
 def main():
+    ''' Вычисляет результат математического выражения,
+        переводит значение из одной величины в другую
+    
+    Args:
+        None
+    
+    Returns:
+        None
+    '''
     # Создаем парсер через argparse
     parser = argparse.ArgumentParser(
         prog="toolkit",

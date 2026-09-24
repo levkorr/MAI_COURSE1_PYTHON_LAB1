@@ -36,9 +36,9 @@ def tokenize(expr):
                 current_token = ""
                 state = "START"
     tokens.append(current_token)  # Последний токен
-    for id, token in enumerate(tokens): # Обратная замена | на //
+    for token_id, token in enumerate(tokens): # Обратная замена | на //
         if token=="|":
-            tokens[id]="//"
+            tokens[token_id]="//"
     return tokens
 
 

@@ -1,0 +1,9 @@
+{
+    "length":   {"km": 0.001, "m": 1, "cm": 100, "mm": 1000},
+    "weight":     {"kg": 0.001, "g": 1},
+    "temperature":  {
+        "c": {"coef": 1, "zero_offset": -273.15},
+        "f": {"coef": 1.8, "zero_offset": -459.67},
+        "k": {"coef": 1, "zero_offset": 0}
+    }
+}

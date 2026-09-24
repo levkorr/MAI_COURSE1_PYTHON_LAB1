@@ -1,3 +1,5 @@
+from .constants import TRUE_OPERATIONS
+
 def calculate(rpn_tokens):
     '''Вычисляет результат выражения записанного с помощью обратной польской записи
 
@@ -9,11 +11,11 @@ def calculate(rpn_tokens):
     '''
     stack = []
 
-    for id, token in enumerate(rpn_tokens):
+    for token_id, token in enumerate(rpn_tokens):
         if "." in token:
-            rpn_tokens[id] = float(token)
+            rpn_tokens[token_id] = float(token)
         elif token.lstrip("+-").isdigit():
-            rpn_tokens[id] = int(token)
+            rpn_tokens[token_id] = int(token)
 
     for token in rpn_tokens:
         if isinstance(token, (int, float)):  # Если число
@@ -24,15 +26,7 @@ def calculate(rpn_tokens):
             a = stack.pop()  # Предпоследнее число в стэке
 
             # Выполняем операцию, убираем итог обратно в стэк
-            if token == "+":
-                stack.append(a+b)
-            elif token == "-":
-                stack.append(a-b)
-            elif token == "/":
-                stack.append(a/b)
-            elif token == "*":
-                stack.append(a*b)
-            elif token == "//":
+            if token == "//":
                 if type(a) == int and type(b) == int:
                     stack.append(a//b)
                 else:
@@ -42,4 +36,6 @@ def calculate(rpn_tokens):
                     stack.append(a%b)
                 else:
                     raise ValueError(f"The operation % only works with int: {a}%{b}")
+            else:
+                stack.append(TRUE_OPERATIONS[token](a,b))
     return stack[0]

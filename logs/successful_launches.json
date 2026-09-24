@@ -58,5 +58,15 @@
     "type": "calculation",
     "expression": "225+364/2",
     "result": 407.0
+  },
+  {
+    "type": "convertation",
+    "value": "120.0kg",
+    "converted value": "120000.0g"
+  },
+  {
+    "type": "calculation",
+    "expression": "2+2",
+    "result": 4
   }
 ]
