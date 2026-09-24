@@ -1,4 +1,4 @@
-from .constants import TRUE_OPERATIONS
+from .constants import OPERATIONS
 
 def calculate(rpn_tokens):
     '''Вычисляет результат выражения записанного с помощью обратной польской записи
@@ -37,5 +37,5 @@ def calculate(rpn_tokens):
                 else:
                     raise ValueError(f"The operation % only works with int: {a}%{b}")
             else:
-                stack.append(TRUE_OPERATIONS[token](a,b))
+                stack.append(OPERATIONS[token](a,b))
     return stack[0]
