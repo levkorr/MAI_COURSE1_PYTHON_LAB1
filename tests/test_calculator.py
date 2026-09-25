@@ -36,7 +36,7 @@ def test_valid_expression(expression, expected):
     "expression, error",
     [
         # Две операции подряд
-        ("2*/3", "Sequential Operations: */"),
+        ("2/ /3", "Sequential Operations: //"),
         ("24**3", "Sequential Operations: **"),
         # Разделенное пробелом число
         ("2 4+-3", "Number is split: ...2 4..."),

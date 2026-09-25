@@ -73,5 +73,10 @@
     "type": "calculation",
     "expression": "2+++++------+4",
     "result": 6
+  },
+  {
+    "type": "calculation",
+    "expression": "25//66+3",
+    "result": 3
   }
 ]

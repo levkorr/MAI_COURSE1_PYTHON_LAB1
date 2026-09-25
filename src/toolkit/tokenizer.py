@@ -36,8 +36,8 @@ def tokenize(expr):
     Returns:
         tokens: Список, токенезированное математическое выражение в инфиксной записи
     '''
-    expr = expr.replace(" ", "")
     expr = expr.replace("//","|")  # Замена // на |
+    expr = expr.replace(" ", "")
     tokens = []
     state = "START"
     current_token = ""

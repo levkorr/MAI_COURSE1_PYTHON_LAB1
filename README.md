@@ -34,6 +34,7 @@ lab_01/
     __init__.py
     __main__.py
     calculator.py
+    config_units.json
     constants.py
     converter.py
     errors.py
