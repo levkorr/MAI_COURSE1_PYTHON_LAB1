@@ -232,8 +232,7 @@ def initial_validation_calc(expr):
         True, если валидация пройдена
 
     Raises:
-        ValueError c указанием на ошибку: если выражение содержит ошибку
-        ZeroDivisionError с указанием на деление: При делении на 0
+        Дочерний класс от CalculatorError с указанием на ошибку: если выражение содержит ошибку
     '''
     if division_by_zero(expr)[0]:
         raise DivisionByZeroError(division_by_zero(expr)[1])
@@ -259,7 +258,7 @@ def validation_convert(value, from_unit, to_unit):
         True, если валидация пройдена
 
     Raises:
-        ValueError с указанием на ошибку: если есть ошибка
+        Дочерний класс от ConverterError с указанием на ошибку: если выражение содержит ошибку
     '''
     if unknown_units(from_unit, to_unit)[0]:
         raise UnknownUnitsError(unknown_units(from_unit, to_unit)[1])
