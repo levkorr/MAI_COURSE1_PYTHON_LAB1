@@ -78,5 +78,15 @@
     "type": "calculation",
     "expression": "25//66+3",
     "result": 3
+  },
+  {
+    "type": "convertation",
+    "value": "12.0kg",
+    "converted value": "12000.0g"
+  },
+  {
+    "type": "convertation",
+    "value": "12.0kg",
+    "converted value": "12000.0g"
   }
 ]

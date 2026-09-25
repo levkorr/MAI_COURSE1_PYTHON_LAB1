@@ -2,6 +2,7 @@ from .constants import ALPHABET, LENGTH, OPERATIONS, TEMPERATURE, UNITS, WEIGHT
 from .errors import *
 # Ошибки для валидации токенизированного выражения калькуляции
 
+
 def sequential_operations(tokens):
     '''Проверяет нет ли двух операций подряд
 
@@ -31,7 +32,7 @@ def float_mistake(tokens):
             Если ошибка не найдена: False и 0
     '''
     for token in tokens:
-        if token.count(".") > 1 or token[-1] == ".":
+        if token.count(".") > 1 or token[-1] == "." or token[0] == ".":
             return [True, token]
     return [False, 0]
 
@@ -125,7 +126,7 @@ def split_number(expr):
     expr = expr.split()
     for i in range(len(expr)-1):
         if (expr[i][-1].isdigit() or expr[i][-1] == ".") and \
-            (expr[i+1][0].isdigit() or expr[i+1][0] == "."):
+                (expr[i+1][0].isdigit() or expr[i+1][0] == "."):
             return [True, f"...{expr[i][-1]} {expr[i+1][0]}..."]
     return [False, 0]
 
@@ -221,7 +222,6 @@ def validation_calc(tokens):
     return True
 
 
-
 def initial_validation_calc(expr):
     ''' Выполняет предварительную валидацию арифметического выражения
 
@@ -243,7 +243,6 @@ def initial_validation_calc(expr):
     if unknown_symbols(expr)[0]:
         raise UnknownSymbolsError(unknown_symbols(expr)[1])
     return True
-
 
 
 def validation_convert(value, from_unit, to_unit):
