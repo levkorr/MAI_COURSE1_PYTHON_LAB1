@@ -1,7 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "toolkit"
-version = "0.9.1"
-description = "Python package with a CLI containing a calculator and a unit converter"
+version = "0.9.11"
+description = "Python package with a CLI with a calculator and a unit converter"
 readme = "README.md"
 requires-python = ">=3.10"
-authors = [{name = "Lev"}]
+authors = [{name = "Leo Korolyov", email = lev@fossko.ru}]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+toolkit = ["*.json"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==9.1.1",
+    "ruff==0.16.8"
+]
