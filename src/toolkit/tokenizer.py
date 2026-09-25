@@ -1,5 +1,31 @@
 from .constants import OPERATIONS, PRECEDANCE
 
+def compress(expr):
+    ''' Совмещает + и - перед числами
+
+    Args:
+        expr: Строка, математическое выражение в инфиксной записи
+
+    Returns:
+        output: Строка, без лишних + и - перед числами
+    '''
+    output = ""
+    for char in expr:
+        if char in "+-":
+            if len(output)!=0 and output[-1] in "+-":
+                if char == "+":
+                    pass
+                if char == "-":
+                    if output[-1]=="-":
+                        output = output[:-1]+"+"
+                    else:
+                        output = output[:-1]+"-"
+            else:
+                output+=char
+        else:
+            output+=char
+    return(output)
+
 def tokenize(expr):
     ''' Токенизирует математическое выражение, 
         токен это операция или число или число с бинарным символом
@@ -8,7 +34,7 @@ def tokenize(expr):
         expr: Строка, математическое выражение в инфиксной записи
 
     Returns:
-        tokens: Токенезированное математическое выражение в инфиксной записи
+        tokens: Список, токенезированное математическое выражение в инфиксной записи
     '''
     expr = expr.replace(" ", "")
     expr = expr.replace("//","|")  # Замена // на |

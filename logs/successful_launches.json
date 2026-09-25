@@ -68,5 +68,10 @@
     "type": "calculation",
     "expression": "2+2",
     "result": 4
+  },
+  {
+    "type": "calculation",
+    "expression": "2+++++------+4",
+    "result": 6
   }
 ]

@@ -2,14 +2,16 @@ import sys
 import argparse
 from .json_dump import calc_dump, convert_dump
 from .calculator import calculate
-from .tokenizer import tokenize, shunting_yard
+from .tokenizer import tokenize, shunting_yard, compress
 from .validator import validation_convert, validation_calc, initial_validation_calc
 from .converter import convert
 
 def main():
-    ''' Вычисляет результат математического выражения,
-        переводит значение из одной величины в другую
-    
+    ''' Являетсе единственным входом и выходом программы
+    Обрабатывает ввод в CLI, входные аргументы
+    Отвечает за запуск нужных функций
+    Хранит основную логику calc и convert
+
     Args:
         None
     
@@ -49,8 +51,9 @@ def main():
     if args.command == "calc":  # Если калькуляция
         expr = args.expression
 
-        initial_validation_calc(expr)  # Предварительная валидация выражения
-        tokenized_expression = tokenize(expr)  # Токенизация выражения
+        compressed_expression = compress(expr) #  Совмещаем все + и -
+        initial_validation_calc(compressed_expression)  # Предварительная валидация выражения
+        tokenized_expression = tokenize(compressed_expression)  # Токенизация выражения
         validation_calc(tokenized_expression)  # Валиадция токенизированного выражения
         rpn_expression = shunting_yard(tokenized_expression)  # ОПЗ токенизированного выражения
         calculated_expression = calculate(rpn_expression)  # Итоговый подсчет
