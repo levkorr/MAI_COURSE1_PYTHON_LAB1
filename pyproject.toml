@@ -14,7 +14,7 @@ authors = [{name = "Leo Korolyov", email = lev@fossko.ru}]
 where = ["src"]
 
 [tool.setuptools.package-data]
-toolkit = ["*.json"]
+toolkit = ["config_units.json"]
 
 [project.optional-dependencies]
 dev = [
