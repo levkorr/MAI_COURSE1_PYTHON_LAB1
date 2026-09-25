@@ -26,16 +26,11 @@ def calculate(rpn_tokens):
             a = stack.pop()  # Предпоследнее число в стэке
 
             # Выполняем операцию, убираем итог обратно в стэк
-            if token == "//":
+            if token in ["//", "%"]:
                 if type(a) == int and type(b) == int:
-                    stack.append(a//b)
+                    stack.append(OPERATIONS[token](a,b))
                 else:
-                    raise ValueError(f"The operation // only works with int: {a}//{b}")
-            elif token == "%":
-                if type(a) == int and type(b) == int:
-                    stack.append(a%b)
-                else:
-                    raise ValueError(f"The operation % only works with int: {a}%{b}")
+                    raise ValueError(f"The operation {token} only works with int: {a}{token}{b}")
             else:
                 stack.append(OPERATIONS[token](a,b))
     return stack[0]
