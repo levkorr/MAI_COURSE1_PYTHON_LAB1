@@ -1,5 +1,6 @@
 from .constants import OPERATIONS, PRECEDANCE
 
+
 def compress(expr):
     ''' Совмещает + и - перед числами
 

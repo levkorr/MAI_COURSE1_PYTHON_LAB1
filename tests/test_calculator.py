@@ -1,5 +1,6 @@
 import re
 import pytest
+from toolkit.errors import CalculatorError
 from toolkit.tokenizer import tokenize, shunting_yard
 from toolkit.calculator import calculate
 from toolkit.validator import initial_validation_calc, validation_calc
@@ -45,30 +46,24 @@ def test_valid_expression(expression, expected):
         ("24.5.6+3", "Float mistake: 24.5.6"),
         ("5986/253.", "Float mistake: 253."),
         # Операция перед первым операндом
-        ("*24+3", "Operation before the first operand: *"),
-        ("/24+3", "Operation before the first operand: /"),
+        ("*24+3", "Expression starts with operation: *"),
+        ("/24+3", "Expression starts with operation: /"),
         # Нет операнда после последней операции
-        ("24+3/", "No operand after operation: /"),
-        ("24+3+", "No operand after operation: +"),
+        ("24+3/", "Expression ends with operation: /"),
+        ("24+3+", "Expression ends with operation: +"),
         # Неизвестные символы
         ("2+a", "Unknown symbols: a "),
         ("26^a", "Unknown symbols: ^ a "),
         # Неправильная работа операторов % и //
         ("2.5*4//2", "The operation // only works with int: 10.0//2"),
-        ("24-32.5*29%7", "The operation % only works with int: 942.5%7")
+        ("24-32.5*29%7", "The operation % only works with int: 942.5%7"),
+        # Деление на 0
+        ("2/0","Division by zero occurred: /0"),
+        ("25+21//0","Division by zero occurred: //0")
     ]
 )
 def test_invalid_expression(expression, error):
-    with pytest.raises(ValueError, match=re.escape(error)):
+    with pytest.raises(CalculatorError, match=re.escape(error)):
         initial_validation_calc(expression)
         validation_calc(tokenize(expression))
         calculate(shunting_yard(tokenize(expression)))
-
-@pytest.mark.parametrize("expression, error", 
-                         [("2*/0", "Division by zero occurred: /0"),
-                          ("255+432//0", "Division by zero occurred: //0")])
-
-def test_invalid_zero_division_expression(expression, error):
-    with pytest.raises(ZeroDivisionError, match=re.escape(error)):
-        initial_validation_calc(expression)
-        validation_calc(tokenize(expression))

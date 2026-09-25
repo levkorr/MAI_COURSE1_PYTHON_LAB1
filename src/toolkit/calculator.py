@@ -1,4 +1,5 @@
 from .constants import OPERATIONS
+from .errors import IntSpecialOperationsError
 
 def calculate(rpn_tokens):
     '''Вычисляет результат выражения записанного с помощью обратной польской записи
@@ -30,7 +31,7 @@ def calculate(rpn_tokens):
                 if type(a) == int and type(b) == int:
                     stack.append(OPERATIONS[token](a,b))
                 else:
-                    raise ValueError(f"The operation {token} only works with int: {a}{token}{b}")
+                    raise IntSpecialOperationsError(token, a, b)
             else:
                 stack.append(OPERATIONS[token](a,b))
     return stack[0]

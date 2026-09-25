@@ -1,10 +1,12 @@
-import sys
 import argparse
-from .json_dump import calc_dump, convert_dump
+import sys
+
 from .calculator import calculate
-from .tokenizer import tokenize, shunting_yard, compress
-from .validator import validation_convert, validation_calc, initial_validation_calc
 from .converter import convert
+from .json_dump import calc_dump, convert_dump
+from .tokenizer import compress, shunting_yard, tokenize
+from .validator import initial_validation_calc, validation_calc, validation_convert
+
 
 def main():
     ''' Являетсе единственным входом и выходом программы
@@ -79,3 +81,4 @@ if __name__ == "__main__":
         main()
     except Exception as e:
         print(e, file=sys.stderr)
+        sys.exit(2)

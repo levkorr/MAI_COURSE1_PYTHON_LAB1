@@ -1,5 +1,6 @@
 import json
 
+
 def calc_dump(expr, calculated_expression):
     ''' Пополняет историю успешных выполнений программы в logs/successful_launches.json
     

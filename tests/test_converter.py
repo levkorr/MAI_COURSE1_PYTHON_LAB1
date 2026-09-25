@@ -1,5 +1,6 @@
 import re
 import pytest
+from toolkit.errors import ConverterError
 from toolkit.converter import convert
 from toolkit.validator import validation_convert
 
@@ -31,13 +32,14 @@ def test_valid_conversion(value, from_unit, to_unit, expected):
         (100, "m", "abc", "Unknown units: abc"),
         (100, "abc", "xyz", "Unknown units: abc xyz"),
         # Несовместимые единицы
-        (100, "m", "kg", "Cant convert between different types of units: from m to kg"),
-        (100, "c", "kg", "Cant convert between different types of units: from c to kg"),
+        (100, "m", "kg", "Different unit types: m, kg"),
+        (100, "c", "kg", "Different unit types: c, kg"),
         # Температура ниже абсолютного нуля
         (-300, "c", "f", "Temperature below absolute zero: -300c"),
         (-1, "k", "c", "Temperature below absolute zero: -1k"),
     ]
 )
 def test_invalid_conversion(value, from_unit, to_unit, error):
-    with pytest.raises(ValueError, match=re.escape(error)):
+    with pytest.raises(ConverterError, match=re.escape(error)):
         validation_convert(value, from_unit, to_unit)
+        
