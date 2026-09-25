@@ -1,7 +1,7 @@
 import json
 
 def calc_dump(expr, calculated_expression):
-    ''' Пополняет историю успешных выполнений программы в successful_launches.json
+    ''' Пополняет историю успешных выполнений программы в logs/successful_launches.json
     
     Args:
         expr: Строка, математическое выражение в инфиксной записи
@@ -24,7 +24,7 @@ def calc_dump(expr, calculated_expression):
         json.dump(launches, file, indent=2)
 
 def convert_dump(value, converted_value, from_unit, to_unit):
-    ''' Пополняет историю успешных выполнений программы в successful_launches.json
+    ''' Пополняет историю успешных выполнений программы в logs/successful_launches.json
 
     Args:
         value: Значение которое нужно перевести
