@@ -1,9 +1,26 @@
 {
-    "length":   {"km": 1000, "m": 1, "cm": 0.01, "mm": 0.001},
-    "weight":     {"kg": 1000, "g": 1},
-    "temperature":  {
-        "c": {"factor": 1, "offset": -273.15},
-        "f": {"factor": 1.8, "offset": -459.67},
-        "k": {"factor": 1, "offset": 0}
+    "length": {
+        "km": 1000,
+        "m": 1,
+        "cm": 0.01,
+        "mm": 0.001
+    },
+    "weight": {
+        "kg": 1000,
+        "g": 1
+    },
+    "temperature": {
+        "c": {
+            "factor": 1,
+            "offset": -273.15
+        },
+        "f": {
+            "factor": 1.8,
+            "offset": -459.67
+        },
+        "k": {
+            "factor": 1,
+            "offset": 0
+        }
     }
 }
