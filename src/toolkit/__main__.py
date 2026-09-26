@@ -52,9 +52,10 @@ def main():
     args = parser.parse_args()
 
     if args.command == "calc":  # Если калькуляция
-
+        # Получение аргументов
         expr = args.expression
 
+        # Основной блок
         compressed_expression = compress(expr) #  Совмещаем все + и -
         initial_validation_calc(compressed_expression)  # Предварительная валидация выражения
         tokenized_expression = tokenize(compressed_expression)  # Токенизация выражения
@@ -67,6 +68,7 @@ def main():
         sys.exit(0)  # Успешное завершение программы
 
     elif args.command == "convert":
+        # Получение аргументов
         try:
             value = float(args.value)
         except ValueError:
@@ -74,6 +76,7 @@ def main():
         from_unit = args.from_unit
         to_unit =  args.to_unit
 
+        # Основной блок
         validation_convert(value, from_unit, to_unit)  # Валидация
         converted_value = convert(value, from_unit, to_unit)  # Перевод величин
 

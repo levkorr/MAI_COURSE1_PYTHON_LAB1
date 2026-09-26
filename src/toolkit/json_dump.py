@@ -11,16 +11,20 @@ def calc_dump(expr, calculated_expression):
     Returns:
         None
     '''
+    # Формат отдельного блока для добавления в файл
     data = {
         "type": "calculation",
         "expression": expr,
         "result": calculated_expression}
 
+    # Выгрузка данных из файла в массив
     with open("logs/successful_launches.json", "r", encoding="utf-8") as file:
         launches = json.load(file)
 
+    # Добавление новых данных в массив
     launches.append(data)
 
+    # Выгрузка нового массива
     with open("logs/successful_launches.json", "w", encoding="utf-8") as file:
         json.dump(launches, file, indent=2)
 
@@ -36,15 +40,19 @@ def convert_dump(value, converted_value, from_unit, to_unit):
     Returns:
         None
     '''
+    # Формат отдельного блока для добавления в файл
     data = {
         "type": "convertation",
         "value": str(value)+from_unit,
         "converted value": str(converted_value)+to_unit}
 
+    # Выгрузка данных из файла в массив
     with open("logs/successful_launches.json", "r", encoding="utf-8") as file:
         launches = json.load(file)
 
+    # Добавление новых данных в массив
     launches.append(data)
 
+    # Выгрузка нового массива
     with open("logs/successful_launches.json", "w", encoding="utf-8") as file:
         json.dump(launches, file, indent=2)

@@ -13,6 +13,7 @@ def calculate(rpn_tokens):
     '''
     stack = []
 
+    # Меняем тип данных у чисел на int и float
     for token_id, token in enumerate(rpn_tokens):
         if "." in token:
             rpn_tokens[token_id] = float(token)
