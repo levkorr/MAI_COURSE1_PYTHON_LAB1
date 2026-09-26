@@ -49,3 +49,7 @@ class DifferentUnitTypesError(ConverterError):
 class BelowAbsoluteZeroError(ConverterError):
     def __init__(self, value, from_unit):
         super().__init__(f"Temperature below absolute zero: {value}{from_unit}")
+
+class InvalidValueError(ConverterError):
+    def __init__(self, value):
+        super().__init__(f"Invalid value: {value}")

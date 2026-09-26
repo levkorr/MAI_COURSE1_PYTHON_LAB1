@@ -88,5 +88,10 @@
     "type": "convertation",
     "value": "12.0kg",
     "converted value": "12000.0g"
+  },
+  {
+    "type": "calculation",
+    "expression": "0.2-3.4",
+    "result": -3.1999999999999997
   }
 ]

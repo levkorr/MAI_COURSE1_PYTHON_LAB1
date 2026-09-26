@@ -43,6 +43,7 @@ python -m toolkit --help
 - `UnknownUnitsError` - конвертация между неизвестными величинами
 - `DifferentUnitTypesError` - конвертация между величинами разных типов
 - `BelowAbsoluteZeroError` - конвертация значения, которое меньше абсолютного нуля
+- `InvalidValueError` - задано неверное значение
 
 ## Структура проекта
 

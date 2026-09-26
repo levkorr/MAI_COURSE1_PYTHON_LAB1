@@ -6,7 +6,7 @@ from .converter import convert
 from .json_dump import calc_dump, convert_dump
 from .tokenizer import compress, shunting_yard, tokenize
 from .validator import initial_validation_calc, validation_calc, validation_convert
-
+from .errors import InvalidValueError
 
 def main():
     ''' Являетсе единственным входом и выходом программы
@@ -65,7 +65,10 @@ def main():
         sys.exit(0)  # Успешное завершение программы
 
     elif args.command == "convert":
-        value = float(args.value)
+        try:
+            value = float(args.value)
+        except:
+            raise InvalidValueError(args.value)
         from_unit = args.from_unit
         to_unit =  args.to_unit
 
