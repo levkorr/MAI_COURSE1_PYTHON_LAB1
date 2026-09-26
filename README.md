@@ -4,11 +4,24 @@
 
 Программа: Python-пакет с CLI, содержащий калькулятор и конвертер величин.
 
+### Для пользователя:
 Стандартные команды для терминала:
 ```bash
 python -m toolkit calc "EXPRESSION"
 python -m toolkit convert VALUE --from UNIT --to UNIT
 python -m toolkit --help
+python -m toolkit calc --help
+python -m toolkit convert --help
+```
+### Для разработчика:
+Установка пакетов:
+```bash
+pip install ".[dev]"
+```
+Команды тестирования:
+```bash
+python -m pytest
+ruff check .
 ```
 ### Калькулятор поддерживает:
 
@@ -140,7 +153,7 @@ lab_01/
 
 Скопировать директорию:
 ```
-git clone https://github.com/levkorr/MAI_COURSE1_PYTHON_LAB1
+git clone https://github.com/levkorr/MAI_COURSE1_PYTHON_LAB1 lab_01
 ```
 
 Создать виртуальное окружение:
