@@ -208,5 +208,40 @@
     "type": "convertation",
     "value": "77.0m",
     "converted value": "7700.0cm"
+  },
+  {
+    "type": "calculation",
+    "expression": "2+2",
+    "result": 4
+  },
+  {
+    "type": "calculation",
+    "expression": "120",
+    "result": 120
+  },
+  {
+    "type": "calculation",
+    "expression": "220*34",
+    "result": 7480
+  },
+  {
+    "type": "calculation",
+    "expression": "1+-2",
+    "result": -1
+  },
+  {
+    "type": "calculation",
+    "expression": "-2*-3",
+    "result": 6
+  },
+  {
+    "type": "calculation",
+    "expression": "-10/-2.5",
+    "result": 4.0
+  },
+  {
+    "type": "calculation",
+    "expression": "56 * - 3 - 28",
+    "result": -196
   }
 ]
