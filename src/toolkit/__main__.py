@@ -3,10 +3,11 @@ import sys
 
 from .calculator import calculate
 from .converter import convert
+from .errors import InvalidValueError, CalculatorError, ConverterError
 from .json_dump import calc_dump, convert_dump
 from .tokenizer import compress, shunting_yard, tokenize
 from .validator import initial_validation_calc, validation_calc, validation_convert
-from .errors import InvalidValueError
+
 
 def main():
     ''' Являетсе единственным входом и выходом программы
@@ -67,7 +68,7 @@ def main():
     elif args.command == "convert":
         try:
             value = float(args.value)
-        except:
+        except ValueError:
             raise InvalidValueError(args.value)
         from_unit = args.from_unit
         to_unit =  args.to_unit
@@ -82,6 +83,6 @@ def main():
 if __name__ == "__main__":
     try:
         main()
-    except Exception as e:
+    except C as e:
         print(e, file=sys.stderr)
         sys.exit(2)

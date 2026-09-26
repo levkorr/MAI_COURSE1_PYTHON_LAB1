@@ -1,6 +1,5 @@
 import json
 
-
 with open("src/toolkit/config_units.json", "r", encoding="utf-8") as file: #  Чтение конфигурационного файла
     config = json.load(file)
 

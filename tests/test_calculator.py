@@ -1,9 +1,12 @@
 import re
+
 import pytest
-from toolkit.errors import CalculatorError
-from toolkit.tokenizer import tokenize, shunting_yard
+
 from toolkit.calculator import calculate
+from toolkit.errors import CalculatorError
+from toolkit.tokenizer import shunting_yard, tokenize
 from toolkit.validator import initial_validation_calc, validation_calc
+
 
 # Успешные запуски
 @pytest.mark.parametrize(

@@ -1,5 +1,87 @@
 from .constants import ALPHABET, LENGTH, OPERATIONS, TEMPERATURE, UNITS, WEIGHT
-from .errors import *
+from .errors import (
+    BelowAbsoluteZeroError,
+    DifferentUnitTypesError,
+    DivisionByZeroError,
+    FloatOperandError,
+    OperationEndError,
+    OperationStartError,
+    SequentialOperationsError,
+    SplitNumberError,
+    UnknownSymbolsError,
+    UnknownUnitsError,
+)
+
+# Функции валидаций:
+
+
+def validation_calc(tokens):
+    ''' Выполняет валидацию токенизированного выражения калькулятора.
+
+    Args:
+        tokens: Список токенов арифметического выражения
+
+    Returns:
+        True, если валидация пройдена
+
+    Raises:
+        Дочерний класс от CalculatorError с указанием на ошибку: если выражение содержит ошибку
+    '''
+    if operation_before_first_operand(tokens)[0]:
+        raise OperationStartError(operation_before_first_operand(tokens)[1])
+    if sequential_operations(tokens)[0]:
+        raise SequentialOperationsError(sequential_operations(tokens)[1])
+    if float_mistake(tokens)[0]:
+        raise FloatOperandError(float_mistake(tokens)[1])
+    return True
+
+
+def initial_validation_calc(expr):
+    ''' Выполняет предварительную валидацию арифметического выражения
+
+    Args:
+        tokens: Список токенов арифметического выражения
+
+    Returns:
+        True, если валидация пройдена
+
+    Raises:
+        Дочерний класс от CalculatorError с указанием на ошибку: если выражение содержит ошибку
+    '''
+    if division_by_zero(expr)[0]:
+        raise DivisionByZeroError(division_by_zero(expr)[1])
+    if no_operand_after_operation(expr)[0]:
+        raise OperationEndError(no_operand_after_operation(expr)[1])
+    if split_number(expr)[0]:
+        raise SplitNumberError(split_number(expr)[1])
+    if unknown_symbols(expr)[0]:
+        raise UnknownSymbolsError(unknown_symbols(expr)[1])
+    return True
+
+
+def validation_convert(value, from_unit, to_unit):
+    ''' Выполняет валидацию конвертации
+
+    Args:
+        value: Значение которое нужно перевести
+        from_unit: Из какой величины нужно перевести значение
+        to_unit: В какую величину нужно перевести значение
+
+    Returns:
+        True, если валидация пройдена
+
+    Raises:
+        Дочерний класс от ConverterError с указанием на ошибку: если выражение содержит ошибку
+    '''
+    if unknown_units(from_unit, to_unit)[0]:
+        raise UnknownUnitsError(unknown_units(from_unit, to_unit)[1])
+    if wrong_units_type(from_unit, to_unit)[0]:
+        raise DifferentUnitTypesError(from_unit, to_unit)
+    if below_absolute_zero(value, from_unit)[0]:
+        raise BelowAbsoluteZeroError(value, from_unit)
+    return True
+
+
 # Ошибки для валидации токенизированного выражения калькуляции
 
 
@@ -196,73 +278,3 @@ def below_absolute_zero(value, from_unit):
     if from_unit == "k" and value < 0:
         return [True, value]
     return [False, 0]
-
-
-# Функции валидаций:
-
-
-def validation_calc(tokens):
-    ''' Выполняет валидацию токенизированного выражения калькулятора.
-
-    Args:
-        tokens: Список токенов арифметического выражения
-
-    Returns:
-        True, если валидация пройдена
-
-    Raises:
-        Дочерний класс от CalculatorError с указанием на ошибку: если выражение содержит ошибку
-    '''
-    if operation_before_first_operand(tokens)[0]:
-        raise OperationStartError(operation_before_first_operand(tokens)[1])
-    if sequential_operations(tokens)[0]:
-        raise SequentialOperationsError(sequential_operations(tokens)[1])
-    if float_mistake(tokens)[0]:
-        raise FloatOperandError(float_mistake(tokens)[1])
-    return True
-
-
-def initial_validation_calc(expr):
-    ''' Выполняет предварительную валидацию арифметического выражения
-
-    Args:
-        tokens: Список токенов арифметического выражения
-
-    Returns:
-        True, если валидация пройдена
-
-    Raises:
-        Дочерний класс от CalculatorError с указанием на ошибку: если выражение содержит ошибку
-    '''
-    if division_by_zero(expr)[0]:
-        raise DivisionByZeroError(division_by_zero(expr)[1])
-    if no_operand_after_operation(expr)[0]:
-        raise OperationEndError(no_operand_after_operation(expr)[1])
-    if split_number(expr)[0]:
-        raise SplitNumberError(split_number(expr)[1])
-    if unknown_symbols(expr)[0]:
-        raise UnknownSymbolsError(unknown_symbols(expr)[1])
-    return True
-
-
-def validation_convert(value, from_unit, to_unit):
-    ''' Выполняет валидацию конвертации
-
-    Args:
-        value: Значение которое нужно перевести
-        from_unit: Из какой величины нужно перевести значение
-        to_unit: В какую величину нужно перевести значение
-
-    Returns:
-        True, если валидация пройдена
-
-    Raises:
-        Дочерний класс от ConverterError с указанием на ошибку: если выражение содержит ошибку
-    '''
-    if unknown_units(from_unit, to_unit)[0]:
-        raise UnknownUnitsError(unknown_units(from_unit, to_unit)[1])
-    if wrong_units_type(from_unit, to_unit)[0]:
-        raise DifferentUnitTypesError(from_unit, to_unit)
-    if below_absolute_zero(value, from_unit)[0]:
-        raise BelowAbsoluteZeroError(value, from_unit)
-    return True

@@ -1,6 +1,7 @@
 from .constants import OPERATIONS
 from .errors import IntSpecialOperationsError
 
+
 def calculate(rpn_tokens):
     '''Вычисляет результат выражения записанного с помощью обратной польской записи
 
@@ -23,15 +24,15 @@ def calculate(rpn_tokens):
             stack.append(token)
         else:  # Если операция
             # Порядок чисел важен для вычитания
-            b = stack.pop()  # Последнее число в стэке
-            a = stack.pop()  # Предпоследнее число в стэке
+            num1 = stack.pop()  # Последнее число в стэке
+            num2 = stack.pop()  # Предпоследнее число в стэке
 
             # Выполняем операцию, убираем итог обратно в стэк
             if token in ["//", "%"]:
-                if type(a) == int and type(b) == int:
-                    stack.append(OPERATIONS[token](a,b))
+                if type(num2) == int and type(num1) == int:
+                    stack.append(OPERATIONS[token](num2, num1))
                 else:
-                    raise IntSpecialOperationsError(token, a, b)
+                    raise IntSpecialOperationsError(token, num2, num1)
             else:
-                stack.append(OPERATIONS[token](a,b))
+                stack.append(OPERATIONS[token](num2, num1))
     return stack[0]
