@@ -3,7 +3,7 @@ import sys
 
 from .calculator import calculate
 from .converter import convert
-from .errors import InvalidValueError, CalculatorError, ConverterError
+from .errors import CalculatorError, ConverterError, InvalidValueError
 from .json_dump import calc_dump, convert_dump
 from .tokenizer import compress, shunting_yard, tokenize
 from .validator import initial_validation_calc, validation_calc, validation_convert
@@ -52,6 +52,7 @@ def main():
     args = parser.parse_args()
 
     if args.command == "calc":  # Если калькуляция
+        
         expr = args.expression
 
         compressed_expression = compress(expr) #  Совмещаем все + и -
@@ -83,6 +84,12 @@ def main():
 if __name__ == "__main__":
     try:
         main()
-    except C as e:
-        print(e, file=sys.stderr)
+    except CalculatorError as error:
+        print(f"Expected Error: {error}", file=sys.stderr)
+        sys.exit(2)
+    except ConverterError as error:
+            print(f"Expected Error: {error}", file=sys.stderr)
+            sys.exit(2)
+    except Exception as error:
+        print(f"UnexpectedError: {error}", file=sys.stderr)
         sys.exit(2)

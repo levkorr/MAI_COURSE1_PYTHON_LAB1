@@ -31,7 +31,7 @@ from toolkit.validator import initial_validation_calc, validation_calc
         ("-136 + 25266 / +24.3 - 4 * + 4 - + 5 / - .6", 896.0864197530865),
     ]
 )
-def test_valid_expression(expression, expected):
+def test_valid_calculation(expression, expected):
     assert calculate(shunting_yard(tokenize(expression))) == pytest.approx(expected)
 
 
@@ -65,7 +65,7 @@ def test_valid_expression(expression, expected):
         ("25+21//0","Division by zero occurred: //0")
     ]
 )
-def test_invalid_expression(expression, error):
+def test_invalid_calculation(expression, error):
     with pytest.raises(CalculatorError, match=re.escape(error)):
         initial_validation_calc(expression)
         validation_calc(tokenize(expression))

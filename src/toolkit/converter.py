@@ -23,18 +23,18 @@ def convert(value, from_unit, to_unit):
                 to_unit_data = config["temperature"][to_unit]  # Импортируем данные из config
 
                 # Переводим исходное значение в Кельвины
-                kelvin = (value - from_unit_data["zero_offset"]) / from_unit_data["coef"]
+                kelvin = (value - from_unit_data["offset"]) / from_unit_data["factor"]
                 # Переводим значение в базовую единицу
-                result = kelvin * to_unit_data["coef"] + to_unit_data["zero_offset"]
+                result = kelvin * to_unit_data["factor"] + to_unit_data["offset"]
 
         else:
             # Если наши данные - не температура
             if from_unit in config[category]:
-                from_coef = config[category][from_unit]
-                to_coef = config[category][to_unit]
+                from_factor = config[category][from_unit]
+                to_factor = config[category][to_unit]
 
                 # Переводим значение в базовую единицу
-                origin = value/from_coef
+                origin = value*from_factor
                 # Переводим значение в нужную единицу
-                result = origin * to_coef
+                result = origin / to_factor
     return result

@@ -1,9 +1,9 @@
 {
-    "length":   {"km": 0.001, "m": 1, "cm": 100, "mm": 1000},
-    "weight":     {"kg": 0.001, "g": 1},
+    "length":   {"km": 1000, "m": 1, "cm": 0.01, "mm": 0.001},
+    "weight":     {"kg": 1000, "g": 1},
     "temperature":  {
-        "c": {"coef": 1, "zero_offset": -273.15},
-        "f": {"coef": 1.8, "zero_offset": -459.67},
-        "k": {"coef": 1, "zero_offset": 0}
+        "c": {"factor": 1, "offset": -273.15},
+        "f": {"factor": 1.8, "offset": -459.67},
+        "k": {"factor": 1, "offset": 0}
     }
 }

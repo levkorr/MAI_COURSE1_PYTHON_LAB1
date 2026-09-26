@@ -93,5 +93,50 @@
     "type": "calculation",
     "expression": "0.2-3.4",
     "result": -3.1999999999999997
+  },
+  {
+    "type": "convertation",
+    "value": "10.0c",
+    "converted value": "283.15k"
+  },
+  {
+    "type": "calculation",
+    "expression": "+------------++++++++++-+-----++4/2",
+    "result": 2.0
+  },
+  {
+    "type": "convertation",
+    "value": "1.0kg",
+    "converted value": "1000.0g"
+  },
+  {
+    "type": "convertation",
+    "value": "100.0f",
+    "converted value": "37.77777777777783c"
+  },
+  {
+    "type": "convertation",
+    "value": "100.0g",
+    "converted value": "0.1kg"
+  },
+  {
+    "type": "convertation",
+    "value": "50.0c",
+    "converted value": "323.15k"
+  },
+  {
+    "type": "convertation",
+    "value": "50.0f",
+    "converted value": "283.15k"
+  },
+  {
+    "type": "convertation",
+    "value": "50.0f",
+    "converted value": "283.15k"
+  },
+  {
+    "type": "convertation",
+    "value": "50.0c",
+    "converted value": "323.15k"
   }
 ]
