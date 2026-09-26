@@ -36,7 +36,8 @@ class UnknownSymbolsError(CalculatorError):
 
 class IntSpecialOperationsError(CalculatorError):
     def __init__(self, operation, number1, number2):
-        super().__init__(f"The operation {operation} only works with int: {number1}{operation}{number2}")
+        super().__init__(
+            f"The operation {operation} only works with int: {number1}{operation}{number2}")
 
 class UnknownUnitsError(ConverterError):
     def __init__(self, symbols):

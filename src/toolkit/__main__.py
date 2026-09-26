@@ -52,7 +52,7 @@ def main():
     args = parser.parse_args()
 
     if args.command == "calc":  # Если калькуляция
-        
+
         expr = args.expression
 
         compressed_expression = compress(expr) #  Совмещаем все + и -
@@ -88,8 +88,8 @@ if __name__ == "__main__":
         print(f"Expected Error: {error}", file=sys.stderr)
         sys.exit(2)
     except ConverterError as error:
-            print(f"Expected Error: {error}", file=sys.stderr)
-            sys.exit(2)
+        print(f"Expected Error: {error}", file=sys.stderr)
+        sys.exit(2)
     except Exception as error:
         print(f"UnexpectedError: {error}", file=sys.stderr)
         sys.exit(2)

@@ -29,7 +29,7 @@ def calculate(rpn_tokens):
 
             # Выполняем операцию, убираем итог обратно в стэк
             if token in ["//", "%"]:
-                if type(num2) == int and type(num1) == int:
+                if isinstance(num2,int) and isinstance(num1,int):
                     stack.append(OPERATIONS[token](num2, num1))
                 else:
                     raise IntSpecialOperationsError(token, num2, num1)

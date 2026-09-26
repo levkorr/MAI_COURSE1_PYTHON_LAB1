@@ -138,5 +138,65 @@
     "type": "convertation",
     "value": "50.0c",
     "converted value": "323.15k"
+  },
+  {
+    "type": "calculation",
+    "expression": "77/7",
+    "result": 11.0
+  },
+  {
+    "type": "calculation",
+    "expression": "77/7",
+    "result": 11.0
+  },
+  {
+    "type": "calculation",
+    "expression": "77/7",
+    "result": 11.0
+  },
+  {
+    "type": "calculation",
+    "expression": "77/7",
+    "result": 11.0
+  },
+  {
+    "type": "calculation",
+    "expression": "77/7",
+    "result": 11.0
+  },
+  {
+    "type": "calculation",
+    "expression": "77/7",
+    "result": 11.0
+  },
+  {
+    "type": "calculation",
+    "expression": "77/7",
+    "result": 11.0
+  },
+  {
+    "type": "calculation",
+    "expression": "77/7",
+    "result": 11.0
+  },
+  {
+    "type": "calculation",
+    "expression": "77/7",
+    "result": 11.0
+  },
+  {
+    "type": "convertation",
+    "value": "77.0m",
+    "converted value": "7700.0cm"
+  },
+  {
+    "type": "calculation",
+    "expression": "77/7",
+    "result": 11.0
+  },
+  {
+    "type": "convertation",
+    "value": "77.0m",
+    "converted value": "7700.0cm"
   }
 ]

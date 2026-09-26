@@ -25,7 +25,7 @@ def compress(expr):
                 output+=char
         else:
             output+=char
-    return(output)
+    return output
 
 def tokenize(expr):
     ''' Токенизирует математическое выражение, 
