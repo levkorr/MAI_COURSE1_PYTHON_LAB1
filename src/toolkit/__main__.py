@@ -32,7 +32,7 @@ def main():
         # Получение аргументов
         try:
             value = float(args.value)
-        except ValueError as exc:
+        except Exception as exc:
             raise InvalidValueError(args.value) from exc
         from_unit = args.from_unit
         to_unit = args.to_unit
