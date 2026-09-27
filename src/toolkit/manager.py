@@ -37,8 +37,8 @@ def custom_help(argv):
             Put additional '--' before the expression 
     
         Examples of working programs:
-            python -m toolkit calc "2+2"            Returns 4
-            python -m toolkit calc "8.5/4.25"       Returns 2.0
+            python -m toolkit calc "2+2"             Returns 4
+            python -m toolkit calc "8.5/4.25"        Returns 2.0
             python -m toolkit calc -- "--23+24"      Returns 47 
                 """)
                 sys.exit(0)
@@ -59,6 +59,11 @@ def custom_help(argv):
             Length: 'mm', 'cm', 'm', 'km'
             Weight: 'g', 'kg'
             Temperature: 'c', 'f', 'k'
+                
+        Examples of working programs:
+            python -m toolkit convert 100 --from g --to kg      Returns 0.1
+            python -m toolkit convert 50 --from f --to c        Returns 10.0
+            python -m toolkit convert 25 --from m --to mm       Returns 25000.0
                 """)
                 sys.exit(0)
 
@@ -147,7 +152,11 @@ def full_convert(value,from_unit,to_unit):
     '''
     validation_convert(value, from_unit, to_unit)  # Валидация
     converted_value = convert(value, from_unit, to_unit)  # Перевод величин
+    formatted_value = f"{converted_value:.15f}".rstrip("0").rstrip(".")
 
-    print(converted_value)  # Итоговый вывод
-    convert_dump(value, converted_value, from_unit, to_unit)  # Выгрузка успешного запуска
+    if formatted_value.isdigit():
+         formatted_value=float(formatted_value)
+
+    print(formatted_value)  # Итоговый вывод
+    convert_dump(value, formatted_value, from_unit, to_unit)  # Выгрузка успешного запуска
     sys.exit(0)  # Успешное завершение программы
