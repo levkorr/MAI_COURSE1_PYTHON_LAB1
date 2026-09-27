@@ -44,4 +44,3 @@ def test_valid_conversion(value, from_unit, to_unit, expected):
 def test_invalid_conversion(value, from_unit, to_unit, error):
     with pytest.raises(ConverterError, match=re.escape(error)):
         validation_convert(value, from_unit, to_unit)
-        

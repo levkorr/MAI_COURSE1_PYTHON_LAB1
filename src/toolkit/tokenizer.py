@@ -11,10 +11,10 @@ def compress(expr):
         output: Строка, без лишних + и - перед числами
     '''
     output = "" # Строка вывода
-    for char in expr: 
+    for char in expr:
         if char in "+-": # Если + или -
             # Если последний символ в строке вывода это + или -
-            if len(output)!=0 and output[-1] in "+-": 
+            if len(output)!=0 and output[-1] in "+-":
                 if char == "+": # Если + то не изменяем
                     pass
                 if char == "-": # Если - то инвертируем
