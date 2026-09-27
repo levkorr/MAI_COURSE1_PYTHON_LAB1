@@ -288,5 +288,20 @@
     "type": "calculation",
     "expression": "-20+3",
     "result": -17
+  },
+  {
+    "type": "calculation",
+    "expression": "77/7",
+    "result": 11.0
+  },
+  {
+    "type": "convertation",
+    "value": "77.0m",
+    "converted value": "7700.0cm"
+  },
+  {
+    "type": "convertation",
+    "value": "102.0kg",
+    "converted value": "102000.0g"
   }
 ]
