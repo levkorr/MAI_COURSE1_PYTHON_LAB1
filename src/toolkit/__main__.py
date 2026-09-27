@@ -1,7 +1,7 @@
 import sys
 
 from .errors import CalculatorError, ConverterError, InvalidValueError
-from .manager import help, parse, full_calc, full_convert
+from .manager import full_calc, full_convert, help, parse
 
 
 def main():
@@ -46,6 +46,6 @@ if __name__ == "__main__":
     except ConverterError as error:
         print(f"Expected Error: {error}", file=sys.stderr)
         sys.exit(2)
-    except Exception as error:
+    except Exception as error:  # noqa: BLE001
         print(f"UnexpectedError: {error}", file=sys.stderr)
         sys.exit(2)
