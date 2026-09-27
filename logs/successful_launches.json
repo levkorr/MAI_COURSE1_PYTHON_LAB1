@@ -303,5 +303,15 @@
     "type": "convertation",
     "value": "102.0kg",
     "converted value": "102000.0g"
+  },
+  {
+    "type": "calculation",
+    "expression": "--23+24",
+    "result": 47
+  },
+  {
+    "type": "calculation",
+    "expression": "--23+24",
+    "result": 47
   }
 ]

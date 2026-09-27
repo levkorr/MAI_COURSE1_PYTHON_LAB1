@@ -31,10 +31,15 @@ def custom_help(argv):
             Any amount of '+' and '-' before numbers
             Spaces between parts of expression
             Priorities of operations
+        
+        WARNING:
+            If your expression starts with '--':
+            Put additional '--' before the expression 
     
         Examples of working programs:
             python -m toolkit calc "2+2"            Returns 4
             python -m toolkit calc "8.5/4.25"       Returns 2.0
+            python -m toolkit calc -- "--23+24"      Returns 47 
                 """)
                 sys.exit(0)
 
