@@ -155,7 +155,7 @@ def full_convert(value,from_unit,to_unit):
     formatted_value = f"{converted_value:.15f}".rstrip("0").rstrip(".")
 
     if formatted_value.isdigit():
-         formatted_value=float(formatted_value)
+        formatted_value=float(formatted_value)
 
     print(formatted_value)  # Итоговый вывод
     convert_dump(value, formatted_value, from_unit, to_unit)  # Выгрузка успешного запуска
