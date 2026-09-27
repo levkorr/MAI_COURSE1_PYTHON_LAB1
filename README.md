@@ -160,16 +160,16 @@ lab_01/
 ## Инструкция по установке
 
 Скопировать директорию:
-```
+```bash
 git clone https://github.com/levkorr/MAI_COURSE1_PYTHON_LAB1 lab_01
 ```
 
 Создать виртуальное окружение:
-```
+``` bash
 python -m venv venv
 venv/scripts/activate
 ```
 Установить toolkit:
-```
+``` bash
 pip install .
 ```
