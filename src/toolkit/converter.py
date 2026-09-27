@@ -16,6 +16,8 @@ def convert(value, from_unit, to_unit):
     Returns:
         result: Конвертированное значение
     '''
+    from_unit = from_unit.lower()
+    to_unit=to_unit.lower()
     result = 0
     for category in config:  # Пробегаем по величиным в джейсоне
         if category == "temperature":

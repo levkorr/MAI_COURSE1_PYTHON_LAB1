@@ -33,6 +33,8 @@ def validation_calc(tokens):
         raise SequentialOperationsError(sequential_operations(tokens)[1])
     if float_mistake(tokens)[0]:
         raise FloatOperandError(float_mistake(tokens)[1])
+    if division_by_zero(tokens)[0]:
+        raise DivisionByZeroError(division_by_zero(tokens)[1])
     return True
 
 
@@ -48,8 +50,6 @@ def initial_validation_calc(expr):
     Raises:
         Дочерний класс от CalculatorError с указанием на ошибку: если выражение содержит ошибку
     '''
-    if division_by_zero(expr)[0]:
-        raise DivisionByZeroError(division_by_zero(expr)[1])
     if no_operand_after_operation(expr)[0]:
         raise OperationEndError(no_operand_after_operation(expr)[1])
     if split_number(expr)[0]:
@@ -135,26 +135,26 @@ def operation_before_first_operand(tokens):
     return [False, 0]
 
 
-# Ошибки для валидации иначального выражения калькуляции
-
-
-def division_by_zero(expr):
+def division_by_zero(tokens):
     '''Проверяет нет ли деления на 0
 
     Args:
-        expr: Строка, математическое выражение в инфиксной записи
+        tokens: Список, токенезированное математическое выражение в инфиксной записи
 
     Returns:
         Список из двух элементов:
             Если ошибка найдена: True и найденная операция деления на 0
             Если ошибка не найдена: False и 0
     '''
-    expr = expr.replace(" ", "")
-    if "//0" in expr:
-        return [True, "//0"]
-    if "/0" in expr:
-        return [True, "/0"]
+    for i in range(len(tokens)-1):
+        if tokens[i] == "//" and tokens[i+1].lstrip("+-") == "0":
+            return [True, "//0"]
+        if tokens[i] == "/" and tokens[i+1].lstrip("+-") == "0":
+            return [True, "/0"]
     return [False, 0]
+
+
+# Ошибки для валидации иначального выражения калькуляции
 
 
 def no_operand_after_operation(expr):
