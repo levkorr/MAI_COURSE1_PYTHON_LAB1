@@ -443,5 +443,10 @@
     "type": "calculation",
     "expression": "1 + + + 2",
     "result": 3
+  },
+  {
+    "type": "calculation",
+    "expression": "-2+3",
+    "result": 1
   }
 ]

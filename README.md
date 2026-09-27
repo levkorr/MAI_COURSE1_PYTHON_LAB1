@@ -6,6 +6,7 @@
 
 ### Для пользователя:
 Стандартные команды для терминала:
+**Использование только в корневом каталоге проекта**
 ```bash
 python -m toolkit calc "EXPRESSION"
 python -m toolkit convert VALUE --from UNIT --to UNIT
