@@ -160,9 +160,9 @@ git clone https://github.com/levkorr/MAI_COURSE1_PYTHON_LAB1 lab_01
 Создать виртуальное окружение:
 ```
 python -m venv venv
-.venv/bin/activate
+venv/scripts/activate
 ```
 Установить toolkit:
 ```
-pip install -e .
+pip install .
 ```
