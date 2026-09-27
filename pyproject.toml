@@ -10,6 +10,10 @@ readme = "README.md"
 requires-python = ">=3.10"
 authors = [{name = "Leo Korolyov", email = "lev@fossko.ru"}]
 
+[project.urls]
+Homepage = "https://github.com/levkorr/MAI_COURSE1_PYTHON_LAB1"
+Issues = "https://github.com/levkorr/MAI_COURSE1_PYTHON_LAB1/issues"
+
 [tool.setuptools.packages.find]
 where = ["src"]
 

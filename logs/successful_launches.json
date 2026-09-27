@@ -368,5 +368,15 @@
     "type": "convertation",
     "value": "25.0m",
     "converted value": "25000.0mm"
+  },
+  {
+    "type": "calculation",
+    "expression": "77/7",
+    "result": 11.0
+  },
+  {
+    "type": "convertation",
+    "value": "77.0m",
+    "converted value": "7700.0cm"
   }
 ]
