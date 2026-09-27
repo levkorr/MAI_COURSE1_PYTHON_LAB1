@@ -24,3 +24,11 @@ def test_cli_valid_conversion(capsys):
 
     captured = capsys.readouterr()
     assert float(captured.out) == 7700.0
+
+def test_cli_valid_help():
+    sys.argv = ["toolkit", "--help"]
+
+    try:
+        main()
+    except SystemExit as e:
+        assert e.code == 0

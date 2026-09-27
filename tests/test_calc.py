@@ -4,7 +4,7 @@ import pytest
 
 from toolkit.calculator import calculate
 from toolkit.errors import CalculatorError
-from toolkit.tokenizer import shunting_yard, tokenize
+from toolkit.tokenizer import shunting_yard, tokenize, compress
 from toolkit.validator import initial_validation_calc, validation_calc
 
 
@@ -27,12 +27,15 @@ from toolkit.validator import initial_validation_calc, validation_calc
         # Пробелы между токенами
         ("56 * - 3 - 28", -196),
         ("280 /- 3+ 27*-4", -201.33333333333331),
+        # Много + и - перед числами
+        ("++-----23+24", 1),
+        ("-25+---250/25", -35.0),
         # Огромное выражение со всеми проверками
-        ("-136 + 25266 / +24.3 - 4 * + 4 - + 5 / - .6", 896.0864197530865),
+        ("-136 + 25266 / +24.3 - 4 * + 4 -----+ + 5 / - .6", 896.0864197530865),
     ]
 )
 def test_valid_calculation(expression, expected):
-    assert calculate(shunting_yard(tokenize(expression))) == pytest.approx(expected)
+    assert calculate(shunting_yard(tokenize(compress(expression)))) == pytest.approx(expected)
 
 
 # Неуспешные запуски
@@ -69,4 +72,4 @@ def test_invalid_calculation(expression, error):
     with pytest.raises(CalculatorError, match=re.escape(error)):
         initial_validation_calc(expression)
         validation_calc(tokenize(expression))
-        calculate(shunting_yard(tokenize(expression)))
+        calculate(shunting_yard(tokenize(compress(expression))))

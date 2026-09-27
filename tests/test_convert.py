@@ -13,13 +13,13 @@ from toolkit.validator import validation_convert
     [
         # Длина
         (1000, "mm", "m", 1.0),
-        (1, "km", "cm", 100000.0),
+        (1, "km", "CM", 100000.0),
         # Масса
-        (1000, "g", "kg", 1.0),
+        (1000, "g", "Kg", 1.0),
         (2.5, "kg", "g", 2500.0),
         # Температура
         (0, "c", "f", 32.0),
-        (273.15, "k", "c", 0.0),
+        (273.15, "K", "c", 0.0),
     ]
 )
 def test_valid_conversion(value, from_unit, to_unit, expected):
