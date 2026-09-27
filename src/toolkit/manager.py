@@ -164,6 +164,6 @@ def full_convert(value,from_unit,to_unit):
     print(formatted_value)  # Итоговый вывод
     try:
         convert_dump(value, formatted_value, from_unit, to_unit)  # Выгрузка успешного запуска
-    except Exception:
-        raise FailedSaveError()
+    except Exception as exc:
+        raise FailedSaveError() from exc
     sys.exit(0)  # Успешное завершение программы

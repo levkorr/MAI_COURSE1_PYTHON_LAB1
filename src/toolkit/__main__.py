@@ -15,6 +15,9 @@ def main():
 
     Returns:
         None
+    
+    Raises:
+        InvalidValueError: Если непраивльное значение для конвертера
     '''
     custom_help(sys.argv)  # Обработка выражения на --help
 

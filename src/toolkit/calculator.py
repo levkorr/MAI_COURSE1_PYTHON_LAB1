@@ -10,6 +10,9 @@ def calculate(rpn_tokens):
 
     Returns:
         stack[0]: Число - результат выражения
+    
+    Raaises:
+        IntSpecialOperationsError: Если спец операции с float значениями
     '''
     stack = []
 
