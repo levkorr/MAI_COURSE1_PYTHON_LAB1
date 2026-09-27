@@ -1,7 +1,7 @@
 import sys
 
 from .errors import CalculatorError, ConverterError, InvalidValueError
-from .manager import full_calc, full_convert, help, parse
+from .manager import full_calc, full_convert, custom_help, parse
 
 
 def main():
@@ -16,7 +16,7 @@ def main():
     Returns:
         None
     '''
-    help(sys.argv)  # Обработка выражения на --help
+    custom_help(sys.argv)  # Обработка выражения на --help
 
     args = parse()  # Создаем парсер через argparse
 
@@ -29,8 +29,8 @@ def main():
         # Получение аргументов
         try:
             value = float(args.value)
-        except ValueError:
-            raise InvalidValueError(args.value)
+        except ValueError as exc:
+            raise InvalidValueError(args.value) from exc
         from_unit = args.from_unit
         to_unit = args.to_unit
 

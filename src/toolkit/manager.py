@@ -8,7 +8,15 @@ from .tokenizer import compress, shunting_yard, tokenize
 from .validator import initial_validation_calc, validation_calc, validation_convert
 
 
-def help(argv):
+def custom_help(argv):
+    ''' Модуль создающий кастомный хелп в зависмиости от аргументов
+
+    Args:
+        argv: Список аргументов, поступивших в программу 
+    
+    Returns:
+        None
+    '''
     if "--help" in argv:
             if "calc" in argv:
                 print("""
@@ -29,7 +37,7 @@ def help(argv):
             python -m toolkit calc "8.5/4.25"       Returns 2.0
                 """)
                 sys.exit(0)
-            
+
             elif "convert" in argv:
                 print("""
         Converter module
@@ -48,7 +56,7 @@ def help(argv):
             Temperature: 'c', 'f', 'k'
                 """)
                 sys.exit(0)
-    
+
             print("""
         Calculator and unit converter.
     
@@ -67,6 +75,14 @@ def help(argv):
             sys.exit(0)
 
 def parse():
+    ''' Модуль создающий парсер
+    
+    Args:
+        None
+    
+    Returns:
+        args: Аргументы парсера
+    '''
     parser = argparse.ArgumentParser(
         prog="toolkit",
         description="Calculator and unit converter.",
@@ -91,7 +107,15 @@ def parse():
 
 
 def full_calc(expr):
-
+    ''' Весь цикл работы модуля calc, 
+    От получения аргументов, до вывода ответа, выгрузки успешного запуска и завершения программы
+    
+    Args:
+        expr: Матемтическое выражение
+    
+    Returns:
+        None
+    '''
     compressed_expression = compress(expr) #  Совмещаем все + и -
     initial_validation_calc(compressed_expression)  # Предварительная валидация выражения
     tokenized_expression = tokenize(compressed_expression)  # Токенизация выражения
@@ -105,10 +129,20 @@ def full_calc(expr):
 
 
 def full_convert(value,from_unit,to_unit):
+    ''' Весь цикл работы модуля convert, 
+    От получения аргументов, до вывода ответа, выгрузки успешного запуска и завершения программы
+    
+    Args:
+        value: Значение, которое надо перевести
+        from_unit: Величина из которой надо перевести
+        to_unit: Величина в которую надо перевести
 
+    Returns:
+        None
+    '''
     validation_convert(value, from_unit, to_unit)  # Валидация
     converted_value = convert(value, from_unit, to_unit)  # Перевод величин
-     
+
     print(converted_value)  # Итоговый вывод
     convert_dump(value, converted_value, from_unit, to_unit)  # Выгрузка успешного запуска
     sys.exit(0)  # Успешное завершение программы
