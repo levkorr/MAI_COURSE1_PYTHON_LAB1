@@ -1,7 +1,7 @@
 import sys
 
 from .errors import CalculatorError, ConverterError, InvalidValueError
-from .manager import full_calc, full_convert, custom_help, parse
+from .manager import custom_help, full_calc, full_convert, parse
 
 
 def main():
