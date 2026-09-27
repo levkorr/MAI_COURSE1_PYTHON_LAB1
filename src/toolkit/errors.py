@@ -6,6 +6,9 @@ class ConverterError(Exception):
     # Parent ошибка для конвертера
     pass
 
+class LogError(Exception):
+    pass
+
 class SequentialOperationsError(CalculatorError):
     def __init__(self, operations):
         super().__init__(f"Sequential Operations: {operations}")
@@ -54,3 +57,7 @@ class BelowAbsoluteZeroError(ConverterError):
 class InvalidValueError(ConverterError):
     def __init__(self, value):
         super().__init__(f"Invalid value: {value}")
+
+class FailedSaveError(LogError):
+    def __init__(self):
+        super().__init__("Failed to save history")

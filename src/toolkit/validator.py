@@ -147,10 +147,8 @@ def division_by_zero(tokens):
             Если ошибка не найдена: False и 0
     '''
     for i in range(len(tokens)-1):
-        if tokens[i] == "//" and tokens[i+1].lstrip("+-") == "0":
-            return [True, "//0"]
-        if tokens[i] == "/" and tokens[i+1].lstrip("+-") == "0":
-            return [True, "/0"]
+        if tokens[i] in ["//","/","%"] and tokens[i+1].lstrip("+-") == "0":
+            return [True, f"{tokens[i]}0"]
     return [False, 0]
 
 

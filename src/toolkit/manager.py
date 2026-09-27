@@ -6,6 +6,7 @@ from .converter import convert
 from .json_dump import calc_dump, convert_dump
 from .tokenizer import compress, shunting_yard, tokenize
 from .validator import initial_validation_calc, validation_calc, validation_convert
+from .errors import FailedSaveError
 
 
 def custom_help(argv):
@@ -134,7 +135,10 @@ def full_calc(expr):
     calculated_expression = calculate(rpn_expression)  # Итоговый подсчет
 
     print(calculated_expression)
-    calc_dump(expr, calculated_expression)  # Выгрузка успешного запуска
+    try:
+        calc_dump(expr, calculated_expression)  # Выгрузка успешного запуска
+    except Exception:
+        raise FailedSaveError()
     sys.exit(0)  # Успешное завершение программы
 
 
@@ -158,5 +162,8 @@ def full_convert(value,from_unit,to_unit):
         formatted_value=float(formatted_value)
 
     print(formatted_value)  # Итоговый вывод
-    convert_dump(value, formatted_value, from_unit, to_unit)  # Выгрузка успешного запуска
+    try:
+        convert_dump(value, formatted_value, from_unit, to_unit)  # Выгрузка успешного запуска
+    except Exception:
+        raise FailedSaveError()
     sys.exit(0)  # Успешное завершение программы

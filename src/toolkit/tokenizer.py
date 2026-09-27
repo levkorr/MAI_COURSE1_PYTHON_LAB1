@@ -10,6 +10,7 @@ def compress(expr):
     Returns:
         output: Строка, без лишних + и - перед числами
     '''
+    expr = expr.replace(" ", "")
     output = "" # Строка вывода
     for char in expr:
         if char in "+-": # Если + или -
